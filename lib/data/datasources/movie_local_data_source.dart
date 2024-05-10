@@ -1,6 +1,6 @@
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/data/models/movie_table.dart';
+import 'package:umovieapp/common/exception.dart';
+import 'package:umovieapp/data/datasources/db/database_helper.dart';
+import 'package:umovieapp/data/models/movie_table.dart';
 
 abstract class MovieLocalDataSource {
   Future<String> insertWatchlist(MovieTable movie);

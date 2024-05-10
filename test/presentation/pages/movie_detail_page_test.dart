@@ -1,7 +1,7 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/presentation/pages/movies/movie_detail_page.dart';
-import 'package:ditonton/presentation/provider/movies/movie_detail_notifier.dart';
+import 'package:umovieapp/common/state_enum.dart';
+import 'package:umovieapp/domain/entities/movie.dart';
+import 'package:umovieapp/presentation/pages/movies/movie_detail_page.dart';
+import 'package:umovieapp/presentation/provider/movies/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

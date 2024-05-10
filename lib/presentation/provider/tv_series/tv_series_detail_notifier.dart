@@ -1,11 +1,11 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/domain/entities/tv_series_detail.dart';
-import 'package:ditonton/domain/usecases/tv_series/get_tv_series_detail.dart';
-import 'package:ditonton/domain/usecases/tv_series/get_tv_series_recommendations.dart';
-import 'package:ditonton/domain/usecases/tv_series/get_watchlist_status_tv_series.dart';
-import 'package:ditonton/domain/usecases/tv_series/remove_watchlist_tv_series.dart';
-import 'package:ditonton/domain/usecases/tv_series/save_watchlist_tv_series.dart';
+import 'package:umovieapp/common/state_enum.dart';
+import 'package:umovieapp/domain/entities/tv_series.dart';
+import 'package:umovieapp/domain/entities/tv_series_detail.dart';
+import 'package:umovieapp/domain/usecases/tv_series/get_tv_series_detail.dart';
+import 'package:umovieapp/domain/usecases/tv_series/get_tv_series_recommendations.dart';
+import 'package:umovieapp/domain/usecases/tv_series/get_watchlist_status_tv_series.dart';
+import 'package:umovieapp/domain/usecases/tv_series/remove_watchlist_tv_series.dart';
+import 'package:umovieapp/domain/usecases/tv_series/save_watchlist_tv_series.dart';
 import 'package:flutter/material.dart';
 
 class TvSeriesDetailNotifier extends ChangeNotifier {

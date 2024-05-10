@@ -1,6 +1,6 @@
-import 'package:ditonton/data/models/genre_model.dart';
-import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/domain/entities/tv_series_detail.dart';
+import 'package:umovieapp/data/models/genre_model.dart';
+import 'package:umovieapp/data/models/season_model.dart';
+import 'package:umovieapp/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesDetailResponse extends Equatable {

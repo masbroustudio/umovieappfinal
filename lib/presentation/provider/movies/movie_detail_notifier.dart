@@ -1,11 +1,11 @@
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
-import 'package:ditonton/domain/usecases/movies/get_movie_detail.dart';
-import 'package:ditonton/domain/usecases/movies/get_movie_recommendations.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/usecases/movies/get_watchlist_status.dart';
-import 'package:ditonton/domain/usecases/movies/remove_watchlist.dart';
-import 'package:ditonton/domain/usecases/movies/save_watchlist.dart';
+import 'package:umovieapp/domain/entities/movie.dart';
+import 'package:umovieapp/domain/entities/movie_detail.dart';
+import 'package:umovieapp/domain/usecases/movies/get_movie_detail.dart';
+import 'package:umovieapp/domain/usecases/movies/get_movie_recommendations.dart';
+import 'package:umovieapp/common/state_enum.dart';
+import 'package:umovieapp/domain/usecases/movies/get_watchlist_status.dart';
+import 'package:umovieapp/domain/usecases/movies/remove_watchlist.dart';
+import 'package:umovieapp/domain/usecases/movies/save_watchlist.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
-import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movies/movie_list_page.dart';
-import 'package:ditonton/presentation/pages/tv_series/tv_series_list_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
+import 'package:umovieapp/presentation/pages/about_page.dart';
+import 'package:umovieapp/presentation/pages/movies/movie_list_page.dart';
+import 'package:umovieapp/presentation/pages/tv_series/tv_series_list_page.dart';
+import 'package:umovieapp/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeMoviePage extends StatefulWidget {

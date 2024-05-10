@@ -1,8 +1,8 @@
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/pages/tv_series/tv_series_detail_page.dart';
-import 'package:ditonton/presentation/provider/tv_series/tv_series_search_notifier.dart';
-import 'package:ditonton/presentation/widgets/movie_card_list.dart';
+import 'package:umovieapp/common/constants.dart';
+import 'package:umovieapp/common/state_enum.dart';
+import 'package:umovieapp/presentation/pages/tv_series/tv_series_detail_page.dart';
+import 'package:umovieapp/presentation/provider/tv_series/tv_series_search_notifier.dart';
+import 'package:umovieapp/presentation/widgets/movie_card_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

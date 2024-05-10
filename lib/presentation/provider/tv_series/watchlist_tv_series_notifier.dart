@@ -1,6 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/domain/usecases/tv_series/get_watchlist_tv_series.dart';
+import 'package:umovieapp/common/state_enum.dart';
+import 'package:umovieapp/domain/entities/tv_series.dart';
+import 'package:umovieapp/domain/usecases/tv_series/get_watchlist_tv_series.dart';
 import 'package:flutter/foundation.dart';
 
 class WatchlistTvSeriesNotifier extends ChangeNotifier {

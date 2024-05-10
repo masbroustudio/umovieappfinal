@@ -1,4 +1,4 @@
-package com.dicoding.ditonton
+package com.masbrou.umovieapp
 
 import io.flutter.embedding.android.FlutterActivity
 

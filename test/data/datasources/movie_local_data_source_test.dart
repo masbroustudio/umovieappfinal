@@ -1,5 +1,5 @@
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/data/datasources/movie_local_data_source.dart';
+import 'package:umovieapp/common/exception.dart';
+import 'package:umovieapp/data/datasources/movie_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
