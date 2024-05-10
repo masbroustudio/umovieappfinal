@@ -1,75 +1,52 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/widgets/movie_card_list.dart';
+import 'package:ditonton/presentation/pages/movies/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv_series/watchlist_tv_series_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class WatchlistMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-movie';
-
+class WatchlistPage extends StatefulWidget {
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  _WatchlistPageState createState() => _WatchlistPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
-    with RouteAware {
+class _WatchlistPageState extends State<WatchlistPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+    _tabController = TabController(
+      length: _listTabs.length,
+      vsync: this,
+      initialIndex: 0,
+    );
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
-  }
+  final List<Widget> _listTabs = [
+    Text('Movies'),
+    Text('TV Series'),
+  ];
 
-  void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-  }
+  final List<Widget> _listWidget = [
+    WatchlistMoviesPage(),
+    WatchlistTvSeriesPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Watchlist'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Consumer<WatchlistMovieNotifier>(
-          builder: (context, data, child) {
-            if (data.watchlistState == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.watchlistState == RequestState.Loaded) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final movie = data.watchlistMovies[index];
-                  return MovieCard(movie);
-                },
-                itemCount: data.watchlistMovies.length,
-              );
-            } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
-            }
-          },
+        bottom: TabBar(
+          labelPadding: EdgeInsets.all(16),
+          controller: _tabController,
+          indicatorColor: Colors.white,
+          tabs: _listTabs,
         ),
       ),
+      body: TabBarView(
+        controller: _tabController,
+        children: _listWidget,
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    routeObserver.unsubscribe(this);
-    super.dispose();
   }
 }
