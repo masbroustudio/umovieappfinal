@@ -4,8 +4,6 @@ import 'package:umovieapp/domain/entities/tv_series.dart';
 
 void main() {
   final tTvSeriesModel = TvSeriesModel(
-    posterPath: 'posterPath',
-    popularity: 2.3,
     id: 1,
     backdropPath: 'backdropPath',
     voteAverage: 8.1,
@@ -17,11 +15,11 @@ void main() {
     voteCount: 123,
     name: 'name',
     originalName: 'originalName',
+    posterPath: 'posterPath',
+    popularity: 2.3,
   );
 
   final tTvSeries = TvSeries(
-    posterPath: 'posterPath',
-    popularity: 2.3,
     id: 1,
     backdropPath: 'backdropPath',
     voteAverage: 8.1,
@@ -33,9 +31,11 @@ void main() {
     voteCount: 123,
     name: 'name',
     originalName: 'originalName',
+    posterPath: 'posterPath',
+    popularity: 2.3,
   );
 
-  test('should be a subclass of TV Series entity', () {
+  test('Should be a subclass of TV Series entity', () {
     final result = tTvSeriesModel.toEntity();
     expect(result, tTvSeries);
   });

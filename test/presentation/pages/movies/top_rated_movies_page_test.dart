@@ -27,20 +27,7 @@ void main() {
     );
   }
 
-  testWidgets('Page should display progress bar when loading',
-      (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
-
-    final progressFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
-
-    await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
-
-    expect(centerFinder, findsOneWidget);
-    expect(progressFinder, findsOneWidget);
-  });
-
-  testWidgets('Page should display when data is loaded',
+  testWidgets('Page top rated movies display when data is loaded',
       (WidgetTester tester) async {
     when(mockNotifier.state).thenReturn(RequestState.Loaded);
     when(mockNotifier.movies).thenReturn(<Movie>[]);
@@ -52,7 +39,7 @@ void main() {
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets('Page top rated movies display text with message when Error',
       (WidgetTester tester) async {
     when(mockNotifier.state).thenReturn(RequestState.Error);
     when(mockNotifier.message).thenReturn('Error message');
@@ -62,5 +49,18 @@ void main() {
     await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
 
     expect(textFinder, findsOneWidget);
+  });
+
+  testWidgets('Page top rated movies display progress bar when loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.Loading);
+
+    final progressFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
+
+    await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
+
+    expect(centerFinder, findsOneWidget);
+    expect(progressFinder, findsOneWidget);
   });
 }

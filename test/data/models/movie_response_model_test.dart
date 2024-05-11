@@ -8,9 +8,6 @@ import '../../json_reader.dart';
 
 void main() {
   final tMovieModel = MovieModel(
-    adult: false,
-    backdropPath: "/path.jpg",
-    genreIds: [1, 2, 3, 4],
     id: 1,
     originalTitle: "Original Title",
     overview: "Overview",
@@ -21,11 +18,14 @@ void main() {
     video: false,
     voteAverage: 1.0,
     voteCount: 1,
+    adult: false,
+    backdropPath: "/path.jpg",
+    genreIds: [1, 2, 3, 4],
   );
   final tMovieResponseModel =
       MovieResponse(movieList: <MovieModel>[tMovieModel]);
-  group('fromJson', () {
-    test('should return a valid model from JSON', () async {
+  group('Valid Model From Json', () {
+    test('Return a valid model from JSON', () async {
       // arrange
       final Map<String, dynamic> jsonMap =
           json.decode(readJson('dummy_data/movies/now_playing.json'));
@@ -36,8 +36,8 @@ void main() {
     });
   });
 
-  group('toJson', () {
-    test('should return a JSON map containing proper data', () async {
+  group('Valid Model To Json', () {
+    test('Return a JSON map containing proper data', () async {
       // arrange
 
       // act

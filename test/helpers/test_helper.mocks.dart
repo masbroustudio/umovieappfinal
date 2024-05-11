@@ -763,46 +763,6 @@ class MockDatabaseHelper extends _i1.Mock implements _i23.DatabaseHelper {
       ) as _i7.Future<_i24.Database?>);
 
   @override
-  _i7.Future<int> insertWatchlistMovie(_i14.MovieTable? movie) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #insertWatchlistMovie,
-          [movie],
-        ),
-        returnValue: _i7.Future<int>.value(0),
-      ) as _i7.Future<int>);
-
-  @override
-  _i7.Future<int> insertWatchlistTvSeries(_i22.TvSeriesTable? tvSeries) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #insertWatchlistTvSeries,
-          [tvSeries],
-        ),
-        returnValue: _i7.Future<int>.value(0),
-      ) as _i7.Future<int>);
-
-  @override
-  _i7.Future<int> removeWatchlistMovie(_i14.MovieTable? movie) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #removeWatchlistMovie,
-          [movie],
-        ),
-        returnValue: _i7.Future<int>.value(0),
-      ) as _i7.Future<int>);
-
-  @override
-  _i7.Future<int> removeWatchlistTvSeries(_i22.TvSeriesTable? tvSeries) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #removeWatchlistTvSeries,
-          [tvSeries],
-        ),
-        returnValue: _i7.Future<int>.value(0),
-      ) as _i7.Future<int>);
-
-  @override
   _i7.Future<Map<String, dynamic>?> getMovieById(int? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -843,6 +803,46 @@ class MockDatabaseHelper extends _i1.Mock implements _i23.DatabaseHelper {
         returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
             <Map<String, dynamic>>[]),
       ) as _i7.Future<List<Map<String, dynamic>>>);
+
+  @override
+  _i7.Future<int> insertWatchlistMovie(_i14.MovieTable? movie) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #insertWatchlistMovie,
+          [movie],
+        ),
+        returnValue: _i7.Future<int>.value(0),
+      ) as _i7.Future<int>);
+
+  @override
+  _i7.Future<int> insertWatchlistTvSeries(_i22.TvSeriesTable? tvSeries) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #insertWatchlistTvSeries,
+          [tvSeries],
+        ),
+        returnValue: _i7.Future<int>.value(0),
+      ) as _i7.Future<int>);
+
+  @override
+  _i7.Future<int> removeWatchlistMovie(_i14.MovieTable? movie) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #removeWatchlistMovie,
+          [movie],
+        ),
+        returnValue: _i7.Future<int>.value(0),
+      ) as _i7.Future<int>);
+
+  @override
+  _i7.Future<int> removeWatchlistTvSeries(_i22.TvSeriesTable? tvSeries) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #removeWatchlistTvSeries,
+          [tvSeries],
+        ),
+        returnValue: _i7.Future<int>.value(0),
+      ) as _i7.Future<int>);
 }
 
 /// A class which mocks [Client].

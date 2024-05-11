@@ -25,8 +25,8 @@ void main() {
   final tTvSeriesResponseModel =
       TvSeriesResponse(tvSeriesList: <TvSeriesModel>[tTvSeriesModel]);
 
-  group('fromJson', () {
-    test('should return a valid model from JSON', () async {
+  group('Valid Model From Json', () {
+    test('Return a valid model from JSON', () async {
       // arrange
       final Map<String, dynamic> jsonMap =
           json.decode(readJson('dummy_data/tv_series/now_playing.json'));
@@ -37,8 +37,8 @@ void main() {
     });
   });
 
-  group('toJson', () {
-    test('should return a JSON map containing proper data', () async {
+  group('Valid Model To Json', () {
+    test('Return a JSON map containing proper data', () async {
       // arrange
       final expectedJsonMap = {
         "results": [

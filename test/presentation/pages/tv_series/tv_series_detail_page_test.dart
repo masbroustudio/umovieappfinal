@@ -28,42 +28,7 @@ void main() {
     );
   }
 
-  testWidgets(
-      'Watchlist button should display add icon when tv series not added to watchlist',
-      (WidgetTester tester) async {
-    when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
-    when(mockNotifier.tvSeriesRecommendationsState)
-        .thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-
-    final watchlistButtonIcon = find.byIcon(Icons.add);
-
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
-
-    expect(watchlistButtonIcon, findsOneWidget);
-  });
-
-  testWidgets(
-      'Watchlist button should dispay check icon when tv series is added to wathclist',
-      (WidgetTester tester) async {
-    when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
-    when(mockNotifier.tvSeriesRecommendationsState)
-        .thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(true);
-
-    final watchlistButtonIcon = find.byIcon(Icons.check);
-
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
-
-    expect(watchlistButtonIcon, findsOneWidget);
-  });
-
-  testWidgets(
-      'Watchlist button should display Snackbar when added to watchlist',
+  testWidgets('Display Snackbar when tv series added to watchlist',
       (WidgetTester tester) async {
     when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
@@ -86,8 +51,7 @@ void main() {
     expect(find.text('Added to Watchlist'), findsOneWidget);
   });
 
-  testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
+  testWidgets('Display AlertDialog when tv series add to watchlist failed',
       (WidgetTester tester) async {
     when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
@@ -108,5 +72,37 @@ void main() {
 
     expect(find.byType(AlertDialog), findsOneWidget);
     expect(find.text('Failed'), findsOneWidget);
+  });
+
+  testWidgets('Display add icon when tv series not added to watchlist',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
+    when(mockNotifier.tvSeriesRecommendationsState)
+        .thenReturn(RequestState.Loaded);
+    when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+    final watchlistButtonIcon = find.byIcon(Icons.add);
+
+    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
+
+    expect(watchlistButtonIcon, findsOneWidget);
+  });
+
+  testWidgets('Dispay check icon when tv series is added to wathclist',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
+    when(mockNotifier.tvSeries).thenReturn(tTvSeriesDetail);
+    when(mockNotifier.tvSeriesRecommendationsState)
+        .thenReturn(RequestState.Loaded);
+    when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.isAddedToWatchlist).thenReturn(true);
+
+    final watchlistButtonIcon = find.byIcon(Icons.check);
+
+    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
+
+    expect(watchlistButtonIcon, findsOneWidget);
   });
 }
