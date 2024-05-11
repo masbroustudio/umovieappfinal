@@ -5,10 +5,6 @@ import 'package:equatable/equatable.dart';
 
 class TvSeriesDetailResponse extends Equatable {
   TvSeriesDetailResponse({
-    required this.backdropPath,
-    required this.firstAirDate,
-    required this.genres,
-    required this.homepage,
     required this.id,
     required this.inProduction,
     required this.languages,
@@ -28,12 +24,12 @@ class TvSeriesDetailResponse extends Equatable {
     required this.type,
     required this.voteAverage,
     required this.voteCount,
+    required this.backdropPath,
+    required this.firstAirDate,
+    required this.genres,
+    required this.homepage,
   });
 
-  final String? backdropPath;
-  final String firstAirDate;
-  final List<GenreModel> genres;
-  final String homepage;
   final int id;
   final bool inProduction;
   final List<String> languages;
@@ -53,14 +49,13 @@ class TvSeriesDetailResponse extends Equatable {
   final String type;
   final double voteAverage;
   final int voteCount;
+  final String? backdropPath;
+  final String firstAirDate;
+  final List<GenreModel> genres;
+  final String homepage;
 
   factory TvSeriesDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvSeriesDetailResponse(
-        backdropPath: json["backdrop_path"],
-        firstAirDate: json["first_air_date"],
-        genres: List<GenreModel>.from(
-            json["genres"].map((x) => GenreModel.fromJson(x))),
-        homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
@@ -81,13 +76,14 @@ class TvSeriesDetailResponse extends Equatable {
         type: json["type"],
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
+        backdropPath: json["backdrop_path"],
+        firstAirDate: json["first_air_date"],
+        genres: List<GenreModel>.from(
+            json["genres"].map((x) => GenreModel.fromJson(x))),
+        homepage: json["homepage"],
       );
 
   Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath,
-        "first_air_date": firstAirDate,
-        "genres": List<GenreModel>.from(genres.map((x) => x.toJson())),
-        "homepage": homepage,
         "id": id,
         "in_production": inProduction,
         "languages": List<String>.from(languages.map((x) => x)),
@@ -107,34 +103,35 @@ class TvSeriesDetailResponse extends Equatable {
         "type": type,
         "vote_average": voteAverage,
         "vote_count": voteCount,
+        "backdrop_path": backdropPath,
+        "first_air_date": firstAirDate,
+        "genres": List<GenreModel>.from(genres.map((x) => x.toJson())),
+        "homepage": homepage,
       };
 
   TvSeriesDetail toEntity() {
     return TvSeriesDetail(
-        backdropPath: backdropPath,
-        firstAirDate: firstAirDate,
-        genres: this.genres.map((genre) => genre.toEntity()).toList(),
-        id: id,
-        lastAirDate: lastAirDate,
-        name: name,
-        numberOfEpisodes: numberOfEpisodes,
-        numberOfSeasons: numberOfSeasons,
-        overview: overview,
-        posterPath: posterPath,
-        seasons: this.seasons.map((season) => season.toEntity()).toList(),
-        status: status,
-        tagline: tagline,
-        type: type,
-        voteAverage: voteAverage,
-        voteCount: voteCount);
+      id: id,
+      lastAirDate: lastAirDate,
+      name: name,
+      numberOfEpisodes: numberOfEpisodes,
+      numberOfSeasons: numberOfSeasons,
+      overview: overview,
+      posterPath: posterPath,
+      seasons: this.seasons.map((season) => season.toEntity()).toList(),
+      status: status,
+      tagline: tagline,
+      type: type,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+      backdropPath: backdropPath,
+      firstAirDate: firstAirDate,
+      genres: this.genres.map((genre) => genre.toEntity()).toList(),
+    );
   }
 
   @override
   List<Object?> get props => [
-        backdropPath,
-        firstAirDate,
-        genres,
-        homepage,
         id,
         inProduction,
         languages,
@@ -154,5 +151,9 @@ class TvSeriesDetailResponse extends Equatable {
         type,
         voteAverage,
         voteCount,
+        backdropPath,
+        firstAirDate,
+        genres,
+        homepage,
       ];
 }

@@ -15,6 +15,22 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   MovieLocalDataSourceImpl({required this.databaseHelper});
 
   @override
+  Future<MovieTable?> getMovieById(int id) async {
+    final result = await databaseHelper.getMovieById(id);
+    if (result != null) {
+      return MovieTable.fromMap(result);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future<List<MovieTable>> getWatchlistMovies() async {
+    final result = await databaseHelper.getWatchlistMovies();
+    return result.map((data) => MovieTable.fromMap(data)).toList();
+  }
+
+  @override
   Future<String> insertWatchlist(MovieTable movie) async {
     try {
       await databaseHelper.insertWatchlistMovie(movie);
@@ -32,21 +48,5 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
     } catch (e) {
       throw DatabaseException(e.toString());
     }
-  }
-
-  @override
-  Future<MovieTable?> getMovieById(int id) async {
-    final result = await databaseHelper.getMovieById(id);
-    if (result != null) {
-      return MovieTable.fromMap(result);
-    } else {
-      return null;
-    }
-  }
-
-  @override
-  Future<List<MovieTable>> getWatchlistMovies() async {
-    final result = await databaseHelper.getWatchlistMovies();
-    return result.map((data) => MovieTable.fromMap(data)).toList();
   }
 }

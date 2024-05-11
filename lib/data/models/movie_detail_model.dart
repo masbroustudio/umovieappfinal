@@ -4,11 +4,6 @@ import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {
   MovieDetailResponse({
-    required this.adult,
-    required this.backdropPath,
-    required this.budget,
-    required this.genres,
-    required this.homepage,
     required this.id,
     required this.imdbId,
     required this.originalLanguage,
@@ -25,13 +20,13 @@ class MovieDetailResponse extends Equatable {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    required this.adult,
+    required this.backdropPath,
+    required this.budget,
+    required this.genres,
+    required this.homepage,
   });
 
-  final bool adult;
-  final String? backdropPath;
-  final int budget;
-  final List<GenreModel> genres;
-  final String homepage;
   final int id;
   final String? imdbId;
   final String originalLanguage;
@@ -48,15 +43,14 @@ class MovieDetailResponse extends Equatable {
   final bool video;
   final double voteAverage;
   final int voteCount;
+  final bool adult;
+  final String? backdropPath;
+  final int budget;
+  final List<GenreModel> genres;
+  final String homepage;
 
   factory MovieDetailResponse.fromJson(Map<String, dynamic> json) =>
       MovieDetailResponse(
-        adult: json["adult"],
-        backdropPath: json["backdrop_path"],
-        budget: json["budget"],
-        genres: List<GenreModel>.from(
-            json["genres"].map((x) => GenreModel.fromJson(x))),
-        homepage: json["homepage"],
         id: json["id"],
         imdbId: json["imdb_id"],
         originalLanguage: json["original_language"],
@@ -73,14 +67,15 @@ class MovieDetailResponse extends Equatable {
         video: json["video"],
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
+        adult: json["adult"],
+        backdropPath: json["backdrop_path"],
+        budget: json["budget"],
+        genres: List<GenreModel>.from(
+            json["genres"].map((x) => GenreModel.fromJson(x))),
+        homepage: json["homepage"],
       );
 
   Map<String, dynamic> toJson() => {
-        "adult": adult,
-        "backdrop_path": backdropPath,
-        "budget": budget,
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
-        "homepage": homepage,
         "id": id,
         "imdb_id": imdbId,
         "original_language": originalLanguage,
@@ -97,13 +92,15 @@ class MovieDetailResponse extends Equatable {
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
+        "adult": adult,
+        "backdrop_path": backdropPath,
+        "budget": budget,
+        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        "homepage": homepage,
       };
 
   MovieDetail toEntity() {
     return MovieDetail(
-      adult: this.adult,
-      backdropPath: this.backdropPath,
-      genres: this.genres.map((genre) => genre.toEntity()).toList(),
       id: this.id,
       originalTitle: this.originalTitle,
       overview: this.overview,
@@ -113,16 +110,14 @@ class MovieDetailResponse extends Equatable {
       title: this.title,
       voteAverage: this.voteAverage,
       voteCount: this.voteCount,
+      adult: this.adult,
+      backdropPath: this.backdropPath,
+      genres: this.genres.map((genre) => genre.toEntity()).toList(),
     );
   }
 
   @override
   List<Object?> get props => [
-        adult,
-        backdropPath,
-        budget,
-        genres,
-        homepage,
         id,
         imdbId,
         originalLanguage,
@@ -139,5 +134,10 @@ class MovieDetailResponse extends Equatable {
         video,
         voteAverage,
         voteCount,
+        adult,
+        backdropPath,
+        budget,
+        genres,
+        homepage,
       ];
 }
