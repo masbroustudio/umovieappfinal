@@ -37,12 +37,12 @@ void main() {
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  group('now playing tv series', () {
-    test('initialState should be empty', () {
+  group('Tv Series Now Playing', () {
+    test('Init state should be empty', () {
       expect(provider.nowPlayingState, equals(RequestState.Empty));
     });
 
-    test('should get data from the usecase', () async {
+    test('Get data from the usecase', () async {
       // arrange
       when(mockGetNowPlayingTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -52,7 +52,7 @@ void main() {
       verify(mockGetNowPlayingTvSeries.execute());
     });
 
-    test('should change state to Loading when usecase is called', () {
+    test('State to Loading when usecase is called', () {
       // arrange
       when(mockGetNowPlayingTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -62,7 +62,7 @@ void main() {
       expect(provider.nowPlayingState, RequestState.Loading);
     });
 
-    test('should change tv series when data is gotten successfully', () async {
+    test('should change tv series when data is success', () async {
       // arrange
       when(mockGetNowPlayingTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -74,7 +74,7 @@ void main() {
       expect(listenerCallCount, 2);
     });
 
-    test('should return error when data is unsuccessful', () async {
+    test('Return error when data is failed', () async {
       // arrange
       when(mockGetNowPlayingTvSeries.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
@@ -87,8 +87,8 @@ void main() {
     });
   });
 
-  group('popular tv series', () {
-    test('should change state to Loading when usecase is called', () {
+  group('Tv Series Popular', () {
+    test('State to Loading when usecase is called', () {
       // arrange
       when(mockGetPopularTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -98,7 +98,7 @@ void main() {
       expect(provider.popularState, RequestState.Loading);
     });
 
-    test('should change tv series when data is gotten successfully', () async {
+    test('should change tv series when data is success', () async {
       // arrange
       when(mockGetPopularTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -110,7 +110,7 @@ void main() {
       expect(listenerCallCount, 2);
     });
 
-    test('should return error when data is unsuccessful', () async {
+    test('Return error when data is failed', () async {
       // arrange
       when(mockGetPopularTvSeries.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
@@ -123,8 +123,8 @@ void main() {
     });
   });
 
-  group('top rated tv series', () {
-    test('should change state to Loading when usecase is called', () {
+  group('Tv Series Top Rated', () {
+    test('State to Loading when usecase is called', () {
       // arrange
       when(mockGetTopRatedTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -134,7 +134,7 @@ void main() {
       expect(provider.topRatedState, RequestState.Loading);
     });
 
-    test('should change tv series when data is gotten successfully', () async {
+    test('should change tv series when data is success', () async {
       // arrange
       when(mockGetTopRatedTvSeries.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -146,7 +146,7 @@ void main() {
       expect(listenerCallCount, 2);
     });
 
-    test('should return error when data is unsuccessful', () async {
+    test('Return error when data is failed', () async {
       // arrange
       when(mockGetTopRatedTvSeries.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));

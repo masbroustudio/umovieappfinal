@@ -27,10 +27,10 @@ void main() {
   });
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
-  final tQuery = 'game of thrones';
+  final tQuery = 'Greek';
 
-  group('search tv series', () {
-    test('should change state to loading when usecase is called', () async {
+  group('Tv Series Search', () {
+    test('State Tv series search to loading when usecase is called', () async {
       // arrange
       when(mockSearchTvSeries.execute(tQuery))
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -40,8 +40,7 @@ void main() {
       expect(provider.state, RequestState.Loading);
     });
 
-    test('should change search result data when data is gotten successfully',
-        () async {
+    test('Search result data Tv series search when data is success', () async {
       // arrange
       when(mockSearchTvSeries.execute(tQuery))
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -53,7 +52,7 @@ void main() {
       expect(listenerCallCount, 2);
     });
 
-    test('should return error when data is unsuccessful', () async {
+    test('Return error when data Tv series search is failed', () async {
       // arrange
       when(mockSearchTvSeries.execute(tQuery))
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));

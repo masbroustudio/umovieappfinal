@@ -59,7 +59,7 @@ void main() {
         .thenAnswer((_) async => Right(tTvSeriesList));
   }
 
-  group('Get TV Series Detail', () {
+  group('TV Series Detail', () {
     test('should get data from the usecase', () async {
       // arrange
       _arrangeUsecase();
@@ -104,8 +104,8 @@ void main() {
     });
   });
 
-  group('Get TV Series Recommendations', () {
-    test('should get data from the usecase', () async {
+  group('TV Series Recommendations', () {
+    test('should get data Tv series detail from the usecase', () async {
       // arrange
       _arrangeUsecase();
       // act
@@ -115,7 +115,8 @@ void main() {
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
     });
 
-    test('should update recommendation state when data is gotten successfully',
+    test(
+        'should update recommendation state when data Tv series detail is success',
         () async {
       // arrange
       _arrangeUsecase();
@@ -126,7 +127,7 @@ void main() {
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
     });
 
-    test('should update error message when request in successful', () async {
+    test('should update error message when request in failed', () async {
       // arrange
       when(mockGetTvSeriesDetail.execute(tId))
           .thenAnswer((_) async => Right(tTvSeriesDetail));

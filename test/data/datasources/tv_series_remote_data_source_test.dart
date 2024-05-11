@@ -166,7 +166,7 @@ void main() {
     final tSearchResult = TvSeriesResponse.fromJson(json.decode(
       readJson('dummy_data/tv_series/search_example_tv_series.json'),
     )).tvSeriesList;
-    final tQuery = 'Game of Thrones';
+    final tQuery = 'Greek';
 
     test('Rreturn list of tv series when response is 200', () async {
       // arrange

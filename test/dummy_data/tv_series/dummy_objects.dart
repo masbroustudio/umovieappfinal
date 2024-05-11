@@ -9,37 +9,37 @@ import 'package:umovieapp/domain/entities/tv_series.dart';
 import 'package:umovieapp/domain/entities/tv_series_detail.dart';
 
 final tTvSeriesModel = TvSeriesModel(
-  posterPath: '/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg',
-  popularity: 29.780826,
-  id: 1399,
-  backdropPath: '/mUkuc2wyV9dHLG0D0Loaw5pO2s8.jpg',
-  voteAverage: 7.91,
+  posterPath: '/xiECPWEyydPiB7XJtciAiS2spKN.jpg',
+  popularity: 1038.723,
+  id: 1242,
+  backdropPath: '/ijfWr8enbRzohBzQIhrv3jy5mI8.jpg',
+  voteAverage: 6.652,
   overview:
-      'Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.',
-  firstAirDate: '2011-04-17',
+      'Casey Cartwright is poised to become the most powerful girl in the Greek system. Rusty, her little brother, is new on campus and he\'s the geek. But he sees Cyprus-Rhodes University as an opportunity to create a whole new identity.',
+  firstAirDate: '2007-07-09',
   originCountry: ['US'],
-  genreIds: [10765, 10759, 18],
+  genreIds: [35, 18],
   originalLanguage: 'en',
-  voteCount: 1172,
-  name: 'Game of Thrones',
-  originalName: 'Game of Thrones',
+  voteCount: 105,
+  name: 'Greek',
+  originalName: 'Greek',
 );
 
 final tTvSeries = TvSeries(
-  posterPath: '/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg',
-  popularity: 29.780826,
-  id: 1399,
-  backdropPath: '/mUkuc2wyV9dHLG0D0Loaw5pO2s8.jpg',
-  voteAverage: 7.91,
+  posterPath: '/xiECPWEyydPiB7XJtciAiS2spKN.jpg',
+  popularity: 1038.723,
+  id: 1242,
+  backdropPath: '/ijfWr8enbRzohBzQIhrv3jy5mI8.jpg',
+  voteAverage: 6.652,
   overview:
-      'Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.',
-  firstAirDate: '2011-04-17',
+      'Casey Cartwright is poised to become the most powerful girl in the Greek system. Rusty, her little brother, is new on campus and he\'s the geek. But he sees Cyprus-Rhodes University as an opportunity to create a whole new identity.',
+  firstAirDate: '2007-07-09',
   originCountry: ['US'],
-  genreIds: [10765, 10759, 18],
+  genreIds: [35, 18],
   originalLanguage: 'en',
-  voteCount: 1172,
-  name: 'Game of Thrones',
-  originalName: 'Game of Thrones',
+  voteCount: 105,
+  name: 'Greek',
+  originalName: 'Greek',
 );
 
 final tTvSeriesResponse = TvSeriesDetailResponse(

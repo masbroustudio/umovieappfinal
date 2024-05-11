@@ -28,7 +28,7 @@ void main() {
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  test('should change state to loading when usecase is called', () async {
+  test('State Now Playing to loading when usecase is called', () async {
     // arrange
     when(mockGetNowPlayingTvSeries.execute())
         .thenAnswer((_) async => Right(tTvSeriesList));
@@ -39,7 +39,7 @@ void main() {
     expect(listenerCallCount, 1);
   });
 
-  test('should change tv series data when data is gotten successfully',
+  test('should change Now Playing tv series data when data is success',
       () async {
     // arrange
     when(mockGetNowPlayingTvSeries.execute())
@@ -52,7 +52,7 @@ void main() {
     expect(listenerCallCount, 2);
   });
 
-  test('should return error when data is unsuccessful', () async {
+  test('Return error when data Now Playing is unsuccessful', () async {
     // arrange
     when(mockGetNowPlayingTvSeries.execute())
         .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
