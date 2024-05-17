@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "32547314070",
+    "project_id": "umovie01-954ba",
+    "storage_bucket": "umovie01-954ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32547314070:android:90e2e5bd8451950e7465b7",
+        "android_client_info": {
+          "package_name": "com.masbrou.umovieapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC12cTpEoHEekqbceWtBFyrGYeH8rIbFY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

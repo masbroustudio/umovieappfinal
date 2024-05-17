@@ -34,6 +34,8 @@ class _MovieListPageState extends State<MovieListPage> {
         actions: [
           IconButton(
             onPressed: () {
+              // TODO : Add Test crash analytics
+              // FirebaseCrashlytics.instance.crash();
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),

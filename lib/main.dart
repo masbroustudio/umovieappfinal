@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:umovieapp/firebase_options.dart';
 import 'package:umovieapp/state_util.dart';
 import 'package:umovieapp/common/constants.dart';
 import 'package:umovieapp/common/utils.dart';
@@ -29,8 +31,12 @@ import 'package:umovieapp/presentation/provider/tv_series/watchlist_tv_series_no
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
