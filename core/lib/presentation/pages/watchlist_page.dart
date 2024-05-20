@@ -17,9 +17,9 @@ class _WatchlistPageState extends State<WatchlistPage>
   void initState() {
     super.initState();
     _tabController = TabController(
+      initialIndex: 0,
       length: _listTabs.length,
       vsync: this,
-      initialIndex: 0,
     );
   }
 
@@ -44,8 +44,8 @@ class _WatchlistPageState extends State<WatchlistPage>
         bottom: TabBar(
           labelPadding: const EdgeInsets.all(16),
           controller: _tabController,
-          indicatorColor: Colors.white,
           tabs: _listTabs,
+          indicatorColor: Colors.white,
         ),
       ),
       body: TabBarView(

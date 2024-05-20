@@ -3,20 +3,20 @@ import 'package:equatable/equatable.dart';
 
 class SeasonDetail extends Equatable {
   final int id;
-  final String? airDate;
-  final List<Episode> episodes;
   final String name;
   final String overview;
   final String? posterPath;
+  final String? airDate;
+  final List<Episode> episodes;
   final int seasonNumber;
 
   const SeasonDetail({
     required this.id,
-    required this.airDate,
-    required this.episodes,
     required this.name,
     required this.overview,
     required this.posterPath,
+    required this.airDate,
+    required this.episodes,
     required this.seasonNumber,
   });
 
@@ -24,11 +24,11 @@ class SeasonDetail extends Equatable {
   List<Object?> get props {
     return [
       id,
-      airDate,
-      episodes,
       name,
       overview,
       posterPath,
+      airDate,
+      episodes,
       seasonNumber,
     ];
   }

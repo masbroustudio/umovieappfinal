@@ -4,11 +4,7 @@ import 'package:equatable/equatable.dart';
 
 class TvSeriesDetail extends Equatable {
   const TvSeriesDetail({
-    required this.backdropPath,
-    required this.firstAirDate,
-    required this.genres,
     required this.id,
-    required this.lastAirDate,
     required this.name,
     required this.numberOfEpisodes,
     required this.numberOfSeasons,
@@ -20,11 +16,12 @@ class TvSeriesDetail extends Equatable {
     required this.type,
     required this.voteAverage,
     required this.voteCount,
+    required this.backdropPath,
+    required this.firstAirDate,
+    required this.lastAirDate,
+    required this.genres,
   });
 
-  final String? backdropPath;
-  final String firstAirDate;
-  final List<Genre> genres;
   final int id;
   final String lastAirDate;
   final String name;
@@ -38,12 +35,12 @@ class TvSeriesDetail extends Equatable {
   final String type;
   final double voteAverage;
   final int voteCount;
+  final String? backdropPath;
+  final String firstAirDate;
+  final List<Genre> genres;
 
   @override
   List<Object?> get props => [
-        backdropPath,
-        firstAirDate,
-        genres,
         id,
         lastAirDate,
         name,
@@ -57,5 +54,8 @@ class TvSeriesDetail extends Equatable {
         type,
         voteAverage,
         voteCount,
+        backdropPath,
+        firstAirDate,
+        genres,
       ];
 }
