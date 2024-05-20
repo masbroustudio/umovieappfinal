@@ -57,7 +57,7 @@ void main() {
       'Should emit [WatchlistStatusState] when data is saved',
       build: () {
         when(mockSaveWatchlistTvSeries.execute(tTvSeriesDetail))
-            .thenAnswer((_) async => const Right('Added to Watchlist'));
+            .thenAnswer((_) async => const Right('Add to Movie Watchlist'));
         when(mockGetWatchListStatusTvSeries.execute(tId))
             .thenAnswer((_) async => true);
         return watchlistStatusTvSeriesBloc;
@@ -66,7 +66,7 @@ void main() {
       expect: () => [
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: true,
-          message: 'Added to Watchlist',
+          message: 'Add to Movie Watchlist',
         ),
       ],
       verify: (bloc) => [
@@ -80,7 +80,7 @@ void main() {
       build: () {
         when(mockSaveWatchlistTvSeries.execute(tTvSeriesDetail)).thenAnswer(
             (_) async =>
-                const Left(DatabaseFailure('Failed Added to Watchlist')));
+                const Left(DatabaseFailure('Failed Add to Movie Watchlist')));
         when(mockGetWatchListStatusTvSeries.execute(tId))
             .thenAnswer((_) async => false);
         return watchlistStatusTvSeriesBloc;
@@ -89,7 +89,7 @@ void main() {
       expect: () => [
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: false,
-          message: 'Failed Added to Watchlist',
+          message: 'Failed Add to Movie Watchlist',
         ),
       ],
       verify: (bloc) => [
@@ -103,8 +103,8 @@ void main() {
     blocTest<WatchlistStatusTvSeriesBloc, WatchlistStatusTvSeriesState>(
       'Should emit [WatchlistStatusState] when data is removed',
       build: () {
-        when(mockRemoveWatchlistTvSeries.execute(tTvSeriesDetail))
-            .thenAnswer((_) async => const Right('Removed from Watchlist'));
+        when(mockRemoveWatchlistTvSeries.execute(tTvSeriesDetail)).thenAnswer(
+            (_) async => const Right('Remove from Movie Watchlist'));
         when(mockGetWatchListStatusTvSeries.execute(tId))
             .thenAnswer((_) async => false);
         return watchlistStatusTvSeriesBloc;
@@ -114,7 +114,7 @@ void main() {
       expect: () => [
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: false,
-          message: 'Removed from Watchlist',
+          message: 'Remove from Movie Watchlist',
         ),
       ],
       verify: (bloc) => [
@@ -127,8 +127,8 @@ void main() {
       'Should emit [WatchlistStatusState] when remove data is unsuccessful',
       build: () {
         when(mockRemoveWatchlistTvSeries.execute(tTvSeriesDetail)).thenAnswer(
-            (_) async =>
-                const Left(DatabaseFailure('Failed Removed from Watchlist')));
+            (_) async => const Left(
+                DatabaseFailure('Failed Remove from Movie Watchlist')));
         when(mockGetWatchListStatusTvSeries.execute(tId))
             .thenAnswer((_) async => true);
         return watchlistStatusTvSeriesBloc;
@@ -138,7 +138,7 @@ void main() {
       expect: () => [
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: true,
-          message: 'Failed Removed from Watchlist',
+          message: 'Failed Remove from Movie Watchlist',
         ),
       ],
       verify: (bloc) => [

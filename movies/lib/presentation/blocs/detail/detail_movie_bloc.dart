@@ -13,8 +13,8 @@ part 'detail_movie_event.dart';
 part 'detail_movie_state.dart';
 
 class DetailMovieBloc extends Bloc<DetailMovieEvent, DetailMovieState> {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+  static const watchlistAddSuccessMessage = 'Add to Movie Watchlist';
+  static const watchlistRemoveSuccessMessage = 'Remove from Movie Watchlist';
 
   final GetDetailMovie getDetailMovie;
   final GetRecommendationMovies getRecommendationMovies;

@@ -3,8 +3,6 @@ import 'package:equatable/equatable.dart';
 
 class TvSeriesModel extends Equatable {
   const TvSeriesModel({
-    required this.posterPath,
-    required this.popularity,
     required this.id,
     required this.backdropPath,
     required this.voteAverage,
@@ -16,10 +14,10 @@ class TvSeriesModel extends Equatable {
     required this.voteCount,
     required this.name,
     required this.originalName,
+    required this.posterPath,
+    required this.popularity,
   });
 
-  final String? posterPath;
-  final double popularity;
   final int id;
   final String? backdropPath;
   final double voteAverage;
@@ -31,43 +29,51 @@ class TvSeriesModel extends Equatable {
   final int voteCount;
   final String name;
   final String originalName;
+  final String? posterPath;
+  final double popularity;
 
   factory TvSeriesModel.fromJson(Map<String, dynamic> json) => TvSeriesModel(
-        posterPath: json["poster_path"],
-        popularity: json["popularity"].toDouble(),
         id: json["id"],
         backdropPath: json["backdrop_path"],
         voteAverage: json["vote_average"].toDouble(),
         overview: json["overview"],
         firstAirDate: json["first_air_date"],
-        originCountry: List<String>.from(json["origin_country"].map((x) => x)),
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+        originCountry: List<String>.from(
+          json["origin_country"].map((x) => x),
+        ),
+        genreIds: List<int>.from(
+          json["genre_ids"].map((x) => x),
+        ),
         originalLanguage: json["original_language"],
         voteCount: json["vote_count"],
         name: json["name"],
         originalName: json["original_name"],
+        posterPath: json["poster_path"],
+        popularity: json["popularity"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
-        "poster_path": posterPath,
-        "popularity": popularity,
         "id": id,
         "backdrop_path": backdropPath,
         "vote_average": voteAverage,
         "overview": overview,
         "first_air_date": firstAirDate,
-        "origin_country": List<String>.from(originCountry.map((x) => x)),
-        "genre_ids": List<int>.from(genreIds.map((x) => x)),
+        "origin_country": List<String>.from(
+          originCountry.map((x) => x),
+        ),
+        "genre_ids": List<int>.from(
+          genreIds.map((x) => x),
+        ),
         "original_language": originalLanguage,
         "vote_count": voteCount,
         "name": name,
         "original_name": originalName,
+        "poster_path": posterPath,
+        "popularity": popularity,
       };
 
   TvSeries toEntity() {
     return TvSeries(
-      posterPath: posterPath,
-      popularity: popularity,
       id: id,
       backdropPath: backdropPath,
       voteAverage: voteAverage,
@@ -79,13 +85,13 @@ class TvSeriesModel extends Equatable {
       voteCount: voteCount,
       name: name,
       originalName: originalName,
+      posterPath: posterPath,
+      popularity: popularity,
     );
   }
 
   @override
   List<Object?> get props => [
-        posterPath,
-        popularity,
         id,
         backdropPath,
         voteAverage,
@@ -97,5 +103,7 @@ class TvSeriesModel extends Equatable {
         voteCount,
         name,
         originalName,
+        posterPath,
+        popularity,
       ];
 }

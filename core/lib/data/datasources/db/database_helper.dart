@@ -67,7 +67,15 @@ class DatabaseHelper {
     }
   }
 
-  Future<Map<String, dynamic>?> getWatchlistTvSeriesById(int id) async {
+  Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
+    final db = await database;
+    final List<Map<String, dynamic>> results =
+        await db!.query(_tblWatchlistMovies);
+
+    return results;
+  }
+
+  Future<Map<String, dynamic>?> getTvSeriesById(int id) async {
     final db = await database;
     final results = await db!.query(
       _tblWatchlistTvSeries,
@@ -80,14 +88,6 @@ class DatabaseHelper {
     } else {
       return null;
     }
-  }
-
-  Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
-    final db = await database;
-    final List<Map<String, dynamic>> results =
-        await db!.query(_tblWatchlistMovies);
-
-    return results;
   }
 
   Future<List<Map<String, dynamic>>> getWatchlistTvSeries() async {

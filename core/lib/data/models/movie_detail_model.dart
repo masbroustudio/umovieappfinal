@@ -1,6 +1,6 @@
+import 'package:equatable/equatable.dart';
 import 'package:core/data/models/genre_model.dart';
 import 'package:core/domain/entities/movie_detail.dart';
-import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {
   const MovieDetailResponse({
@@ -71,7 +71,10 @@ class MovieDetailResponse extends Equatable {
         backdropPath: json["backdrop_path"],
         budget: json["budget"],
         genres: List<GenreModel>.from(
-            json["genres"].map((x) => GenreModel.fromJson(x))),
+          json["genres"].map(
+            (x) => GenreModel.fromJson(x),
+          ),
+        ),
         homepage: json["homepage"],
       );
 
@@ -95,7 +98,11 @@ class MovieDetailResponse extends Equatable {
         "adult": adult,
         "backdrop_path": backdropPath,
         "budget": budget,
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        "genres": List<dynamic>.from(
+          genres.map(
+            (x) => x.toJson(),
+          ),
+        ),
         "homepage": homepage,
       };
 

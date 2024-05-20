@@ -198,12 +198,12 @@ void main() {
     );
   });
 
-  group('Added To Watchlist Movie', () {
+  group('Add to Movie Watchlist Movie', () {
     blocTest<DetailMovieBloc, DetailMovieState>(
-      'Shoud emit [WatchlistMessage, isAddedToWatchlist] when success added to watchlist',
+      'Shoud emit [WatchlistMessage, isAddedToWatchlist] when success Add to Movie Watchlist',
       build: () {
         when(mockSaveWatchlistMovie.execute(testMovieDetail))
-            .thenAnswer((_) async => const Right('Added to Watchlist'));
+            .thenAnswer((_) async => const Right('Add to Movie Watchlist'));
         when(mockGetWatchListStatusMovie.execute(testMovieDetail.id))
             .thenAnswer((_) async => true);
         return detailMovieBloc;
@@ -211,10 +211,10 @@ void main() {
       act: (bloc) => bloc.add(AddWatchlistMovie(testMovieDetail)),
       expect: () => [
         DetailMovieState.initial().copyWith(
-          watchlistMessage: 'Added to Watchlist',
+          watchlistMessage: 'Add to Movie Watchlist',
         ),
         DetailMovieState.initial().copyWith(
-          watchlistMessage: 'Added to Watchlist',
+          watchlistMessage: 'Add to Movie Watchlist',
           isAddedToWatchlist: true,
         ),
       ],
@@ -225,7 +225,7 @@ void main() {
     );
 
     blocTest<DetailMovieBloc, DetailMovieState>(
-      'Shoud emit [WatchlistMessage] when failed added to watchlist',
+      'Shoud emit [WatchlistMessage] when failed Add to Movie Watchlist',
       build: () {
         when(mockSaveWatchlistMovie.execute(testMovieDetail))
             .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
@@ -246,10 +246,10 @@ void main() {
 
   group('Remove From Watchlist Movie', () {
     blocTest<DetailMovieBloc, DetailMovieState>(
-      'Shoud emit [WatchlistMessage, isAddedToWatchlist] when success removed from watchlist',
+      'Shoud emit [WatchlistMessage, isAddedToWatchlist] when success Remove from Movie Watchlist',
       build: () {
-        when(mockRemoveWatchlistMovie.execute(testMovieDetail))
-            .thenAnswer((_) async => const Right('Removed from Watchlist'));
+        when(mockRemoveWatchlistMovie.execute(testMovieDetail)).thenAnswer(
+            (_) async => const Right('Remove from Movie Watchlist'));
         when(mockGetWatchListStatusMovie.execute(testMovieDetail.id))
             .thenAnswer((_) async => false);
         return detailMovieBloc;
@@ -257,7 +257,7 @@ void main() {
       act: (bloc) => bloc.add(RemoveFromWatchlistMovie(testMovieDetail)),
       expect: () => [
         DetailMovieState.initial().copyWith(
-          watchlistMessage: 'Removed from Watchlist',
+          watchlistMessage: 'Remove from Movie Watchlist',
           isAddedToWatchlist: false,
         ),
       ],
@@ -268,7 +268,7 @@ void main() {
     );
 
     blocTest<DetailMovieBloc, DetailMovieState>(
-      'Shoud emit [WatchlistMessage] when failed removed from watchlist',
+      'Shoud emit [WatchlistMessage] when failed Remove from Movie Watchlist',
       build: () {
         when(mockRemoveWatchlistMovie.execute(testMovieDetail))
             .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));

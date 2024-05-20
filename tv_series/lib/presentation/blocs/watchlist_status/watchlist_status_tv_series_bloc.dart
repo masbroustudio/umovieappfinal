@@ -10,8 +10,8 @@ part 'watchlist_status_tv_series_state.dart';
 
 class WatchlistStatusTvSeriesBloc
     extends Bloc<WatchlistStatusTvSeriesEvent, WatchlistStatusTvSeriesState> {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+  static const watchlistAddSuccessMessage = 'Add to Movie Watchlist';
+  static const watchlistRemoveSuccessMessage = 'Remove from Movie Watchlist';
 
   final GetWatchListStatusTvSeries getWatchListStatusTvSeries;
   final SaveWatchlistTvSeries saveWatchlistTvSeries;

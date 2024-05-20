@@ -78,7 +78,7 @@ void main() {
   const tId = 1;
 
   testWidgets(
-      'Watchlist button should display add icon when tv series not added to watchlist',
+      'Watchlist button should display add icon when tv series not Add to Movie Watchlist',
       (WidgetTester tester) async {
     when(() => mockDetailTvSeriesBloc.state)
         .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
@@ -116,7 +116,7 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should display Snackbar when added to watchlist',
+      'Watchlist button should display Snackbar when Add to Movie Watchlist',
       (WidgetTester tester) async {
     when(() => mockDetailTvSeriesBloc.state)
         .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
@@ -128,7 +128,7 @@ void main() {
       Stream.fromIterable([
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: true,
-          message: 'Added to Watchlist',
+          message: 'Add to Movie Watchlist',
         ),
       ]),
       initialState: const WatchlistStatusTvSeriesState(
@@ -141,7 +141,7 @@ void main() {
     final watchlistButtonIconAdd = find.byIcon(Icons.add);
     final watchlistButtonIconCheck = find.byIcon(Icons.check);
     final snackbar = find.byType(SnackBar);
-    final textMessage = find.text('Added to Watchlist');
+    final textMessage = find.text('Add to Movie Watchlist');
 
     await tester
         .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
@@ -158,7 +158,7 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should display Snackbar when removed from watchlist',
+      'Watchlist button should display Snackbar when Remove from Movie Watchlist',
       (WidgetTester tester) async {
     when(() => mockDetailTvSeriesBloc.state)
         .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
@@ -170,7 +170,7 @@ void main() {
       Stream.fromIterable([
         const WatchlistStatusTvSeriesState(
           isAddedToWatchlist: false,
-          message: 'Removed from Watchlist',
+          message: 'Remove from Movie Watchlist',
         ),
       ]),
       initialState: const WatchlistStatusTvSeriesState(
@@ -183,7 +183,7 @@ void main() {
     final watchlistButtonIconAdd = find.byIcon(Icons.add);
     final watchlistButtonIconCheck = find.byIcon(Icons.check);
     final snackbar = find.byType(SnackBar);
-    final textMessage = find.text('Removed from Watchlist');
+    final textMessage = find.text('Remove from Movie Watchlist');
 
     await tester
         .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));

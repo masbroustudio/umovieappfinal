@@ -426,11 +426,11 @@ void main() {
     test('should return success message when saving successful', () async {
       // arrange
       when(mockLocalDataSource.insertWatchlist(testMovieTable))
-          .thenAnswer((_) async => 'Added to Watchlist');
+          .thenAnswer((_) async => 'Add to Movie Watchlist');
       // act
       final result = await repository.saveWatchlist(testMovieDetail);
       // assert
-      expect(result, const Right('Added to Watchlist'));
+      expect(result, const Right('Add to Movie Watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -448,11 +448,11 @@ void main() {
     test('should return success message when remove successful', () async {
       // arrange
       when(mockLocalDataSource.removeWatchlist(testMovieTable))
-          .thenAnswer((_) async => 'Removed from watchlist');
+          .thenAnswer((_) async => 'Remove from Movie Watchlist');
       // act
       final result = await repository.removeWatchlist(testMovieDetail);
       // assert
-      expect(result, const Right('Removed from watchlist'));
+      expect(result, const Right('Remove from Movie Watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {

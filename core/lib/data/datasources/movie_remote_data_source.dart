@@ -1,15 +1,14 @@
 import 'dart:convert';
-
 import 'package:core/core.dart';
+import 'package:http/http.dart' as http;
 import 'package:core/data/models/movie_detail_model.dart';
 import 'package:core/data/models/movie_model.dart';
 import 'package:core/data/models/movie_response.dart';
-import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlaying();
-  Future<List<MovieModel>> getPopular();
   Future<List<MovieModel>> getTopRated();
+  Future<List<MovieModel>> getPopular();
   Future<MovieDetailResponse> getDetail(int id);
   Future<List<MovieModel>> getRecommendation(int id);
   Future<List<MovieModel>> search(String query);
@@ -33,20 +32,9 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   }
 
   @override
-  Future<MovieDetailResponse> getDetail(int id) async {
-    final response = await client.get(Uri.parse('$baseUrl/movie/$id?$apiKey'));
-
-    if (response.statusCode == 200) {
-      return MovieDetailResponse.fromJson(json.decode(response.body));
-    } else {
-      throw ServerException();
-    }
-  }
-
-  @override
-  Future<List<MovieModel>> getRecommendation(int id) async {
-    final response = await client
-        .get(Uri.parse('$baseUrl/movie/$id/recommendations?$apiKey'));
+  Future<List<MovieModel>> getTopRated() async {
+    final response =
+        await client.get(Uri.parse('$baseUrl/movie/top_rated?$apiKey'));
 
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(json.decode(response.body)).movieList;
@@ -68,9 +56,20 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   }
 
   @override
-  Future<List<MovieModel>> getTopRated() async {
-    final response =
-        await client.get(Uri.parse('$baseUrl/movie/top_rated?$apiKey'));
+  Future<MovieDetailResponse> getDetail(int id) async {
+    final response = await client.get(Uri.parse('$baseUrl/movie/$id?$apiKey'));
+
+    if (response.statusCode == 200) {
+      return MovieDetailResponse.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getRecommendation(int id) async {
+    final response = await client
+        .get(Uri.parse('$baseUrl/movie/$id/recommendations?$apiKey'));
 
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(json.decode(response.body)).movieList;

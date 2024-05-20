@@ -45,7 +45,9 @@ class MovieModel extends Equatable {
         voteCount: json["vote_count"],
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+        genreIds: List<int>.from(
+          json["genre_ids"].map((x) => x),
+        ),
       );
 
   Map<String, dynamic> toJson() => {
@@ -61,7 +63,9 @@ class MovieModel extends Equatable {
         "vote_count": voteCount,
         "adult": adult,
         "backdrop_path": backdropPath,
-        "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
+        "genre_ids": List<dynamic>.from(
+          genreIds.map((x) => x),
+        ),
       };
 
   Movie toEntity() {

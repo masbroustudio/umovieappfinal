@@ -41,7 +41,7 @@ void main() {
   const tId = 1;
 
   testWidgets(
-      'Watchlist button should display add icon when movie not added to watchlist',
+      'Watchlist button should display add icon when movie not Add to Movie Watchlist',
       (WidgetTester tester) async {
     when(() => mockDetailMovieBloc.state).thenReturn(
       DetailMovieState.initial().copyWith(
@@ -88,7 +88,7 @@ void main() {
     expect(watchlistButtonIcon, findsOneWidget);
   });
 
-  testWidgets('Show display snackbar when added to watchlist',
+  testWidgets('Show display snackbar when Add to Movie Watchlist',
       (WidgetTester tester) async {
     whenListen(
       mockDetailMovieBloc,
@@ -98,14 +98,14 @@ void main() {
         ),
         DetailMovieState.initial().copyWith(
           isAddedToWatchlist: false,
-          watchlistMessage: 'Added to Watchlist',
+          watchlistMessage: 'Add to Movie Watchlist',
         ),
       ]),
       initialState: DetailMovieState.initial(),
     );
 
     final snackbar = find.byType(SnackBar);
-    final textMessage = find.text('Added to Watchlist');
+    final textMessage = find.text('Add to Movie Watchlist');
 
     await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: tId)));
 
