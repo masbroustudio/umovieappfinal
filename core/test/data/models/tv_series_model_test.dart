@@ -35,7 +35,7 @@ void main() {
     originalName: 'originalName',
   );
 
-  test('should be a subclass of TV Series entity', () {
+  test('To entity should be a subclass of TV Series', () {
     final result = tTvSeriesModel.toEntity();
     expect(result, tTvSeries);
   });

@@ -8,23 +8,23 @@ void main() {
     name: 'name',
   );
 
-  const tGenre = Genre(
-    id: 1,
-    name: 'name',
-  );
-
   const tGenreJson = {
     'id': 1,
     'name': 'name',
   };
 
-  test('should be a subclass of Genre entity', () {
-    final result = tGenreModel.toEntity();
-    expect(result, tGenre);
-  });
+  const tGenre = Genre(
+    id: 1,
+    name: 'name',
+  );
 
-  test('should be a subclass of Genre json', () {
+  test('To json should be a subclass of Genre', () {
     final result = tGenreModel.toJson();
     expect(result, tGenreJson);
+  });
+
+  test('To entity should be a subclass of Genre', () {
+    final result = tGenreModel.toEntity();
+    expect(result, tGenre);
   });
 }

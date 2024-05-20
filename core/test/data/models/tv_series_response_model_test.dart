@@ -26,11 +26,12 @@ void main() {
   const tTvSeriesResponseModel =
       TvSeriesResponse(tvSeriesList: <TvSeriesModel>[tTvSeriesModel]);
 
-  group('fromJson', () {
-    test('should return a valid model from JSON', () async {
+  group('FROM Json', () {
+    test('Return a valid model from JSON', () async {
       // arrange
-      final Map<String, dynamic> jsonMap =
-          json.decode(readJson('dummy_data/tv_series/now_playing.json'));
+      final Map<String, dynamic> jsonMap = json.decode(
+        readJson('dummy_data/tv_series/now_playing.json'),
+      );
       // act
       final result = TvSeriesResponse.fromJson(jsonMap);
       // assert
@@ -38,8 +39,8 @@ void main() {
     });
   });
 
-  group('toJson', () {
-    test('should return a JSON map containing proper data', () async {
+  group('TO Json', () {
+    test('Return a JSON map containing proper data', () async {
       // arrange
       final expectedJsonMap = {
         "results": [

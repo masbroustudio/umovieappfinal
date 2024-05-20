@@ -1,8 +1,8 @@
 import 'dart:convert';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'package:core/data/models/movie_model.dart';
 import 'package:core/data/models/movie_response.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../../json_reader.dart';
 
@@ -22,13 +22,16 @@ void main() {
     voteAverage: 1.0,
     voteCount: 1,
   );
+
   const tMovieResponseModel =
       MovieResponse(movieList: <MovieModel>[tMovieModel]);
-  group('fromJson', () {
-    test('should return a valid model from JSON', () async {
+
+  group('FROM Json', () {
+    test('from JSON should return a valid model', () async {
       // arrange
-      final Map<String, dynamic> jsonMap =
-          json.decode(readJson('dummy_data/movies/now_playing.json'));
+      final Map<String, dynamic> jsonMap = json.decode(
+        readJson('dummy_data/movies/now_playing.json'),
+      );
       // act
       final result = MovieResponse.fromJson(jsonMap);
       // assert
@@ -36,10 +39,9 @@ void main() {
     });
   });
 
-  group('toJson', () {
-    test('should return a JSON map containing proper data', () async {
+  group('TO Json', () {
+    test('Return a JSON map containing proper data', () async {
       // arrange
-
       // act
       final result = tMovieResponseModel.toJson();
       // assert

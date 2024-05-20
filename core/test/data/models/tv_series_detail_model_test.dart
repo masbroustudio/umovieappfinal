@@ -48,40 +48,6 @@ void main() {
     voteCount: 1500,
   );
 
-  const tTvSeriesDetail = TvSeriesDetail(
-    backdropPath: 'backdropPath',
-    firstAirDate: 'firstAirDate',
-    genres: [
-      Genre(
-        id: 1,
-        name: 'name',
-      ),
-    ],
-    id: 1,
-    lastAirDate: 'lastAirDate',
-    name: 'name',
-    numberOfEpisodes: 12,
-    numberOfSeasons: 5,
-    overview: 'overview',
-    posterPath: 'posterPath',
-    seasons: [
-      Season(
-        airDate: 'airDate',
-        episodeCount: 12,
-        id: 1,
-        name: 'name',
-        overview: 'overview',
-        posterPath: 'posterPath',
-        seasonNumber: 1,
-      ),
-    ],
-    status: 'status',
-    tagline: 'tagline',
-    type: 'type',
-    voteAverage: 2.3,
-    voteCount: 1500,
-  );
-
   const tTvSeriesDetailJson = {
     'backdrop_path': 'backdropPath',
     'first_air_date': 'firstAirDate',
@@ -123,13 +89,47 @@ void main() {
     'vote_count': 1500,
   };
 
-  test('should be a subclass of TV Series Detail entity', () {
-    final result = tTvSeriesDetailModel.toEntity();
-    expect(result, tTvSeriesDetail);
-  });
+  const tTvSeriesDetail = TvSeriesDetail(
+    backdropPath: 'backdropPath',
+    firstAirDate: 'firstAirDate',
+    genres: [
+      Genre(
+        id: 1,
+        name: 'name',
+      ),
+    ],
+    id: 1,
+    lastAirDate: 'lastAirDate',
+    name: 'name',
+    numberOfEpisodes: 12,
+    numberOfSeasons: 5,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    seasons: [
+      Season(
+        airDate: 'airDate',
+        episodeCount: 12,
+        id: 1,
+        name: 'name',
+        overview: 'overview',
+        posterPath: 'posterPath',
+        seasonNumber: 1,
+      ),
+    ],
+    status: 'status',
+    tagline: 'tagline',
+    type: 'type',
+    voteAverage: 2.3,
+    voteCount: 1500,
+  );
 
-  test('should be a subclass of TV Series Detail json', () {
+  test('To json should be a subclass of TV Series Detail', () {
     final result = tTvSeriesDetailModel.toJson();
     expect(result, tTvSeriesDetailJson);
+  });
+
+  test('To entity should be a subclass of TV Series Detail', () {
+    final result = tTvSeriesDetailModel.toEntity();
+    expect(result, tTvSeriesDetail);
   });
 }

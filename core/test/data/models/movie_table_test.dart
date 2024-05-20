@@ -10,13 +10,6 @@ void main() {
     overview: 'overview',
   );
 
-  const tMovieWatchlist = Movie.watchlist(
-    id: 1,
-    overview: 'overview',
-    posterPath: 'posterPath',
-    title: 'title',
-  );
-
   const tMovieTableJson = {
     'id': 1,
     'title': 'title',
@@ -24,13 +17,20 @@ void main() {
     'overview': 'overview',
   };
 
-  test('should be a subclass of MovieTable entity', () async {
-    final result = tMovieTable.toEntity();
-    expect(result, tMovieWatchlist);
-  });
+  const tMovieWatchlist = Movie.watchlist(
+    id: 1,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    title: 'title',
+  );
 
-  test('should be a subclass of MovieTable json', () async {
+  test('To json should be a subclass of MovieTable', () async {
     final result = tMovieTable.toJson();
     expect(result, tMovieTableJson);
+  });
+
+  test('To entity should be a subclass of MovieTable', () async {
+    final result = tMovieTable.toEntity();
+    expect(result, tMovieWatchlist);
   });
 }

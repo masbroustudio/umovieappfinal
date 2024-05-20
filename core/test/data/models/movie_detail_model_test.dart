@@ -29,21 +29,6 @@ void main() {
     voteCount: 1500,
   );
 
-  const tMovieDetail = MovieDetail(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genres: [Genre(id: 1, name: 'name')],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    posterPath: 'posterPath',
-    releaseDate: '2020-10-11',
-    runtime: 1,
-    title: 'title',
-    voteAverage: 2.3,
-    voteCount: 1500,
-  );
-
   const tMovieDetailJson = {
     'adult': false,
     'backdrop_path': 'backdropPath',
@@ -73,13 +58,28 @@ void main() {
     'vote_count': 1500,
   };
 
-  test('should be a subclass of MovieDetail entity', () {
-    final result = tMovieDetailModel.toEntity();
-    expect(result, tMovieDetail);
-  });
+  const tMovieDetail = MovieDetail(
+    adult: false,
+    backdropPath: 'backdropPath',
+    genres: [Genre(id: 1, name: 'name')],
+    id: 1,
+    originalTitle: 'originalTitle',
+    overview: 'overview',
+    posterPath: 'posterPath',
+    releaseDate: '2020-10-11',
+    runtime: 1,
+    title: 'title',
+    voteAverage: 2.3,
+    voteCount: 1500,
+  );
 
-  test('should be a subclass of MovieDetail json', () {
+  test('To json should be a subclass of MovieDetail', () {
     final result = tMovieDetailModel.toJson();
     expect(result, tMovieDetailJson);
+  });
+
+  test('To entity should be a subclass of MovieDetail', () {
+    final result = tMovieDetailModel.toEntity();
+    expect(result, tMovieDetail);
   });
 }

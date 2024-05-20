@@ -28,29 +28,6 @@ void main() {
     seasonNumber: 1,
   );
 
-  const tSeasonDetail = SeasonDetail(
-    id: 1,
-    airDate: '2020-10-10',
-    episodes: [
-      Episode(
-        airDate: '2020-10-10',
-        episodeNumber: 1,
-        id: 1,
-        name: 'name',
-        overview: 'overview',
-        productionCode: 'productionCode',
-        seasonNumber: 1,
-        stillPath: 'stillPath',
-        voteAverage: 8.3,
-        voteCount: 1500,
-      )
-    ],
-    name: 'name',
-    overview: 'overview',
-    posterPath: 'posterPath',
-    seasonNumber: 1,
-  );
-
   const tSeasonDetailJson = {
     'id': 1,
     'air_date': '2020-10-10',
@@ -74,13 +51,36 @@ void main() {
     'season_number': 1,
   };
 
-  test('should be a subclass of SeasonDetail entity', () async {
-    final result = tSeasonDetailModel.toEntity();
-    expect(result, tSeasonDetail);
-  });
+  const tSeasonDetail = SeasonDetail(
+    id: 1,
+    airDate: '2020-10-10',
+    episodes: [
+      Episode(
+        airDate: '2020-10-10',
+        episodeNumber: 1,
+        id: 1,
+        name: 'name',
+        overview: 'overview',
+        productionCode: 'productionCode',
+        seasonNumber: 1,
+        stillPath: 'stillPath',
+        voteAverage: 8.3,
+        voteCount: 1500,
+      )
+    ],
+    name: 'name',
+    overview: 'overview',
+    posterPath: 'posterPath',
+    seasonNumber: 1,
+  );
 
-  test('should be a subclass of SeasonDetail json', () async {
+  test('To json should be a subclass of SeasonDetail', () async {
     final result = tSeasonDetailModel.toJson();
     expect(result, tSeasonDetailJson);
+  });
+
+  test('To entity should be a subclass of SeasonDetail', () async {
+    final result = tSeasonDetailModel.toEntity();
+    expect(result, tSeasonDetail);
   });
 }

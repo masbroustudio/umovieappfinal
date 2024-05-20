@@ -13,16 +13,6 @@ void main() {
     seasonNumber: 1,
   );
 
-  const tSeason = Season(
-    airDate: '2020-10-10',
-    episodeCount: 12,
-    id: 1,
-    name: 'name',
-    overview: 'overview',
-    posterPath: 'posterPath',
-    seasonNumber: 1,
-  );
-
   const tSeasonJson = {
     'air_date': '2020-10-10',
     'episode_count': 12,
@@ -33,13 +23,23 @@ void main() {
     'season_number': 1,
   };
 
-  test('should be a subclass of Season entity', () {
-    final result = tSeasonModel.toEntity();
-    expect(result, tSeason);
-  });
+  const tSeason = Season(
+    airDate: '2020-10-10',
+    episodeCount: 12,
+    id: 1,
+    name: 'name',
+    overview: 'overview',
+    posterPath: 'posterPath',
+    seasonNumber: 1,
+  );
 
-  test('should be a subclass of Season json', () {
+  test('To json should be a subclass of Season', () {
     final result = tSeasonModel.toJson();
     expect(result, tSeasonJson);
+  });
+
+  test('To entity should be a subclass of Season', () {
+    final result = tSeasonModel.toEntity();
+    expect(result, tSeason);
   });
 }

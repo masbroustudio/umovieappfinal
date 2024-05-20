@@ -35,7 +35,7 @@ void main() {
     voteCount: 1,
   );
 
-  test('should be a subclass of Movie entity', () async {
+  test('To entity should be a subclass of Movie', () async {
     final result = tMovieModel.toEntity();
     expect(result, tMovie);
   });
