@@ -17,13 +17,18 @@ void main() {
 
   final tTvSeriesList = [tTvSeries];
 
-  test('should get list of tv series from the repository', () async {
-    // arrange
-    when(mockTvSeriesRepository.getWatchlist())
-        .thenAnswer((_) async => Right(tTvSeriesList));
-    // act
+  test('GET Watchlist Tv Series from the repository', () async {
+    when(
+      mockTvSeriesRepository.getWatchlist(),
+    ).thenAnswer(
+      (_) async => Right(tTvSeriesList),
+    );
+
     final result = await usecase.execute();
-    // assert
-    expect(result, Right(tTvSeriesList));
+
+    expect(
+      result,
+      Right(tTvSeriesList),
+    );
   });
 }

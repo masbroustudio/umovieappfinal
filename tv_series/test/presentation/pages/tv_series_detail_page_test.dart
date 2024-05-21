@@ -78,50 +78,68 @@ void main() {
   const tId = 1;
 
   testWidgets(
-      'Watchlist button should display add icon when tv series not Add to Movie Watchlist',
+      'Button Watchlist show add icon when tv series not Add to Watchlist',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesHasData([tTvSeries]));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesHasData([tTvSeries]),
+    );
     when(() => mockWatchlistStatusTvSeriesBloc.state).thenReturn(
-        const WatchlistStatusTvSeriesState(
-            isAddedToWatchlist: false, message: ''));
+      const WatchlistStatusTvSeriesState(
+          isAddedToWatchlist: false, message: ''),
+    );
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(
+      watchlistButtonIcon,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
-      'Watchlist button should dispay check icon when tv series is added to wathclist',
+      'Button Watchlist show check icon when tv series is added to wathclist',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesHasData([tTvSeries]));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesHasData([tTvSeries]),
+    );
     when(() => mockWatchlistStatusTvSeriesBloc.state).thenReturn(
-        const WatchlistStatusTvSeriesState(
-            isAddedToWatchlist: true, message: ''));
+      const WatchlistStatusTvSeriesState(isAddedToWatchlist: true, message: ''),
+    );
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(
+      watchlistButtonIcon,
+      findsOneWidget,
+    );
   });
 
-  testWidgets(
-      'Watchlist button should display Snackbar when Add to Movie Watchlist',
+  testWidgets('Button Wathclist show Snackbar when Add to Watchlist',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesHasData([tTvSeries]));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesHasData([tTvSeries]),
+    );
 
     whenListen(
       mockWatchlistStatusTvSeriesBloc,
@@ -143,8 +161,11 @@ void main() {
     final snackbar = find.byType(SnackBar);
     final textMessage = find.text('Add to Movie Watchlist');
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
     expect(watchlistButtonIconAdd, findsOneWidget);
     expect(snackbar, findsNothing);
@@ -152,18 +173,28 @@ void main() {
     await tester.tap(watchlistButton);
     await tester.pump();
 
-    expect(watchlistButtonIconCheck, findsOneWidget);
-    expect(snackbar, findsOneWidget);
-    expect(textMessage, findsOneWidget);
+    expect(
+      watchlistButtonIconCheck,
+      findsOneWidget,
+    );
+    expect(
+      snackbar,
+      findsOneWidget,
+    );
+    expect(
+      textMessage,
+      findsOneWidget,
+    );
   });
 
-  testWidgets(
-      'Watchlist button should display Snackbar when Remove from Movie Watchlist',
+  testWidgets('Button Wathclist show Snackbar when Remove from Watchlist',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesHasData([tTvSeries]));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesHasData([tTvSeries]),
+    );
 
     whenListen(
       mockWatchlistStatusTvSeriesBloc,
@@ -185,8 +216,11 @@ void main() {
     final snackbar = find.byType(SnackBar);
     final textMessage = find.text('Remove from Movie Watchlist');
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
     expect(watchlistButtonIconCheck, findsOneWidget);
     expect(snackbar, findsNothing);
@@ -194,18 +228,31 @@ void main() {
     await tester.tap(watchlistButton);
     await tester.pump();
 
-    expect(watchlistButtonIconAdd, findsOneWidget);
-    expect(snackbar, findsOneWidget);
-    expect(textMessage, findsOneWidget);
+    expect(
+      watchlistButtonIconAdd,
+      findsOneWidget,
+    );
+
+    expect(
+      snackbar,
+      findsOneWidget,
+    );
+
+    expect(
+      textMessage,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
+      'Button wathchlist show display Alert Dialog when add to watchlist failed',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesHasData([tTvSeries]));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesHasData([tTvSeries]),
+    );
 
     whenListen(
       mockWatchlistStatusTvSeriesBloc,
@@ -226,8 +273,11 @@ void main() {
     final alertDialog = find.byType(AlertDialog);
     final textMessage = find.text('Failed Add to Watchlist');
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
     expect(watchlistButtonIconAdd, findsOneWidget);
     expect(alertDialog, findsNothing);
@@ -235,53 +285,46 @@ void main() {
     await tester.tap(watchlistButton, warnIfMissed: false);
     await tester.pump();
 
-    expect(alertDialog, findsOneWidget);
-    expect(textMessage, findsOneWidget);
+    expect(
+      alertDialog,
+      findsOneWidget,
+    );
+
+    expect(
+      textMessage,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('TV Series should display message error when no internet network',
+  testWidgets(
+      'TV Series Detail should display message when no internet network',
       (WidgetTester tester) async {
     when(() => mockDetailTvSeriesBloc.state).thenReturn(
-        const DetailTvSeriesError('Failed to connect to the network'));
+      const DetailTvSeriesError('Failed to connect to the network'),
+    );
 
     final textErrorBarFinder = find.text('Failed to connect to the network');
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets(
-    'Recommendations TV Series should display text when data is empty',
-    (WidgetTester tester) async {
-      when(() => mockDetailTvSeriesBloc.state)
-          .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-      when(() => mockRecommendationTvSeriesBloc.state)
-          .thenReturn(RecommendationTvSeriesEmpty());
-      when(() => mockWatchlistStatusTvSeriesBloc.state).thenReturn(
-        const WatchlistStatusTvSeriesState(
-          isAddedToWatchlist: false,
-          message: '',
-        ),
-      );
-
-      final textErrorBarFinder = find.text('No Recommendations');
-
-      await tester
-          .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
-
-      expect(textErrorBarFinder, findsOneWidget);
-    },
-  );
-
-  testWidgets(
-      'Recommendations TV Series should display message error when error',
+  testWidgets('TV Series Recomendations should display message when error',
       (WidgetTester tester) async {
-    when(() => mockDetailTvSeriesBloc.state)
-        .thenReturn(const DetailTvSeriesHasData(tTvSeriesDetail));
-    when(() => mockRecommendationTvSeriesBloc.state)
-        .thenReturn(const RecommendationTvSeriesError('Error'));
+    when(() => mockDetailTvSeriesBloc.state).thenReturn(
+      const DetailTvSeriesHasData(tTvSeriesDetail),
+    );
+    when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+      const RecommendationTvSeriesError('Error'),
+    );
     when(() => mockWatchlistStatusTvSeriesBloc.state).thenReturn(
       const WatchlistStatusTvSeriesState(
         isAddedToWatchlist: false,
@@ -291,9 +334,47 @@ void main() {
 
     final textErrorBarFinder = find.text('Error');
 
-    await tester
-        .pumpWidget(makeTestableWidget(const TvSeriesDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const TvSeriesDetailPage(id: tId),
+      ),
+    );
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
+
+  testWidgets(
+    'TV Series Recommendations should display text when data is empty',
+    (WidgetTester tester) async {
+      when(() => mockDetailTvSeriesBloc.state)
+          .thenReturn(const DetailTvSeriesHasData(
+        tTvSeriesDetail,
+      ));
+      when(() => mockRecommendationTvSeriesBloc.state).thenReturn(
+        RecommendationTvSeriesEmpty(),
+      );
+      when(() => mockWatchlistStatusTvSeriesBloc.state).thenReturn(
+        const WatchlistStatusTvSeriesState(
+          isAddedToWatchlist: false,
+          message: '',
+        ),
+      );
+
+      final textErrorBarFinder = find.text('No Recommendations');
+
+      await tester.pumpWidget(
+        makeTestableWidget(
+          const TvSeriesDetailPage(id: tId),
+        ),
+      );
+
+      expect(
+        textErrorBarFinder,
+        findsOneWidget,
+      );
+    },
+  );
 }

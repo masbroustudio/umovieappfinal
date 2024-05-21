@@ -13,7 +13,6 @@ class SeasonDetailLoading extends SeasonDetailState {}
 
 class SeasonDetailHasData extends SeasonDetailState {
   final SeasonDetail result;
-
   const SeasonDetailHasData(this.result);
 
   @override
@@ -22,7 +21,6 @@ class SeasonDetailHasData extends SeasonDetailState {
 
 class SeasonDetailError extends SeasonDetailState {
   final String message;
-
   const SeasonDetailError(this.message);
 
   @override

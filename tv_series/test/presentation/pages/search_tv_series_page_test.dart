@@ -37,76 +37,129 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets(
+      'Search Tv Series Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state)
-        .thenReturn(SearchTvSeriesLoading());
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      SearchTvSeriesLoading(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
-    expect(progressBarFinder, findsOneWidget);
+    expect(
+      progressBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets(
+      'Search Tv Series Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state)
-        .thenReturn(const SearchTvSeriesHasData([tTvSeries]));
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      const SearchTvSeriesHasData([tTvSeries]),
+    );
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
-    expect(listViewFinder, findsOneWidget);
+    expect(
+      listViewFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets(
+      'Search Tv Series Page should display search data when data is loaded',
       (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state)
-        .thenReturn(const SearchTvSeriesHasData([tTvSeries]));
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      const SearchTvSeriesHasData([tTvSeries]),
+    );
 
     final formSearch = find.byType(TextField);
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
     await tester.enterText(formSearch, 'spiderman');
     await tester.pump();
 
-    expect(listViewFinder, findsOneWidget);
+    expect(
+      listViewFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display Text when data is empty',
+  testWidgets('Search Tv Series Page should display Text when data is empty',
       (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state).thenReturn(SearchTvSeriesEmpty());
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      SearchTvSeriesEmpty(),
+    );
 
     final textErrorBarFinder = find.text('Search Not Found');
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display when initial', (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state)
-        .thenReturn(SearchTvSeriesInitial());
+  testWidgets('Search Tv Series Page should display when initial',
+      (WidgetTester tester) async {
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      SearchTvSeriesInitial(),
+    );
 
     final textErrorBarFinder = find.byType(Container);
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets(
+      'Search Tv Series Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(() => mockSearchTvSeriesBloc.state)
-        .thenReturn(const SearchTvSeriesError('Error message'));
+    when(() => mockSearchTvSeriesBloc.state).thenReturn(
+      const SearchTvSeriesError('Error message'),
+    );
 
-    final textFinder = find.byKey(const Key('error_message'));
+    final textFinder = find.byKey(
+      const Key('error_message'),
+    );
 
-    await tester.pumpWidget(makeTestableWidget(const SearchTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const SearchTvSeriesPage(),
+      ),
+    );
 
     expect(textFinder, findsOneWidget);
   });

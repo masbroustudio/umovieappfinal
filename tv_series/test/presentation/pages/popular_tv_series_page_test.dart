@@ -37,40 +37,66 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets(
+      'Popular TV Series Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(() => mockPopularTvSeriesBloc.state)
-        .thenReturn(PopularTvSeriesLoading());
+    when(() => mockPopularTvSeriesBloc.state).thenReturn(
+      PopularTvSeriesLoading(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(makeTestableWidget(const PopularTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const PopularTvSeriesPage(),
+      ),
+    );
 
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
+    expect(
+      centerFinder,
+      findsOneWidget,
+    );
+    expect(
+      progressBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets(
+      'Popular TV Series Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(() => mockPopularTvSeriesBloc.state)
-        .thenReturn(const PopularTvSeriesHasData([tTvSeries]));
+    when(() => mockPopularTvSeriesBloc.state).thenReturn(
+      const PopularTvSeriesHasData([tTvSeries]),
+    );
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(makeTestableWidget(const PopularTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const PopularTvSeriesPage(),
+      ),
+    );
 
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets(
+      'Popular TV Series Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(() => mockPopularTvSeriesBloc.state)
-        .thenReturn(const PopularTvSeriesError('Error message'));
+    when(() => mockPopularTvSeriesBloc.state).thenReturn(
+      const PopularTvSeriesError('Error message'),
+    );
 
-    final textFinder = find.byKey(const Key('error_message'));
+    final textFinder = find.byKey(
+      const Key('error_message'),
+    );
 
-    await tester.pumpWidget(makeTestableWidget(const PopularTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const PopularTvSeriesPage(),
+      ),
+    );
 
     expect(textFinder, findsOneWidget);
   });

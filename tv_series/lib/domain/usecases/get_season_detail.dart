@@ -8,7 +8,13 @@ class GetSeasonDetail {
 
   GetSeasonDetail(this.repository);
 
-  Future<Either<Failure, SeasonDetail>> execute(int id, int seasonNumber) {
-    return repository.getSeasonDetail(id, seasonNumber);
+  Future<Either<Failure, SeasonDetail>> execute(
+    int id,
+    int seasonNumber,
+  ) {
+    return repository.getSeasonDetail(
+      id,
+      seasonNumber,
+    );
   }
 }

@@ -39,7 +39,20 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets('Watchlist Tv Series Page should display text when data is empty',
+      (WidgetTester tester) async {
+    when(() => mockWatchlistTvSeriesBloc.state)
+        .thenReturn(WatchlistTvSeriesEmpty());
+
+    final textErrorBarFinder = find.text('Empty Watchlist');
+
+    await tester.pumpWidget(makeTestableWidget(const WatchlistTvSeriesPage()));
+
+    expect(textErrorBarFinder, findsOneWidget);
+  });
+
+  testWidgets(
+      'Watchlist Tv Series Page should display center progress bar when loading',
       (WidgetTester tester) async {
     when(() => mockWatchlistTvSeriesBloc.state)
         .thenReturn(WatchlistTvSeriesLoading());
@@ -53,7 +66,8 @@ void main() {
     expect(progressBarFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets(
+      'Watchlist Tv Series Page should display ListView when data is loaded',
       (WidgetTester tester) async {
     when(() => mockWatchlistTvSeriesBloc.state)
         .thenReturn(const WatchlistTvSeriesHasData([tTvSeries]));
@@ -65,7 +79,8 @@ void main() {
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets(
+      'Watchlist Tv Series Page should display text with message when Error',
       (WidgetTester tester) async {
     when(() => mockWatchlistTvSeriesBloc.state)
         .thenReturn(const WatchlistTvSeriesError('Error message'));
@@ -75,17 +90,5 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const WatchlistTvSeriesPage()));
 
     expect(textFinder, findsOneWidget);
-  });
-
-  testWidgets('Page should display text when data is empty',
-      (WidgetTester tester) async {
-    when(() => mockWatchlistTvSeriesBloc.state)
-        .thenReturn(WatchlistTvSeriesEmpty());
-
-    final textErrorBarFinder = find.text('Empty Watchlist');
-
-    await tester.pumpWidget(makeTestableWidget(const WatchlistTvSeriesPage()));
-
-    expect(textErrorBarFinder, findsOneWidget);
   });
 }

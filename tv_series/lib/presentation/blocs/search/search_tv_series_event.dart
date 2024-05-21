@@ -2,6 +2,7 @@ part of 'search_tv_series_bloc.dart';
 
 abstract class SearchTvSeriesEvent extends Equatable {
   const SearchTvSeriesEvent();
+
   // coverage:ignore-start
   @override
   List<Object?> get props => [];
@@ -10,8 +11,8 @@ abstract class SearchTvSeriesEvent extends Equatable {
 
 class SearchTvSeriesOnQueryChanged extends SearchTvSeriesEvent {
   final String query;
-
   const SearchTvSeriesOnQueryChanged(this.query);
+
   // coverage:ignore-start
   @override
   List<Object?> get props => [query];

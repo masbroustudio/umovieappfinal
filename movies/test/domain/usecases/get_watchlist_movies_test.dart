@@ -15,13 +15,19 @@ void main() {
     usecase = GetWatchlistMovies(mockMovieRepository);
   });
 
-  test('should get list of movies from the repository', () async {
+  test('GET watchlist movies from the repository', () async {
     // arrange
-    when(mockMovieRepository.getWatchlist())
-        .thenAnswer((_) async => Right(testMovieList));
+    when(
+      mockMovieRepository.getWatchlist(),
+    ).thenAnswer(
+      (_) async => Right(testMovieList),
+    );
     // act
     final result = await usecase.execute();
     // assert
-    expect(result, Right(testMovieList));
+    expect(
+      result,
+      Right(testMovieList),
+    );
   });
 }

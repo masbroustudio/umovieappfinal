@@ -13,7 +13,6 @@ import 'package:tv_series/presentation/blocs/watchlist_status/watchlist_status_t
 
 class TvSeriesDetailPage extends StatefulWidget {
   final int id;
-
   const TvSeriesDetailPage({super.key, required this.id});
 
   @override
@@ -24,15 +23,16 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
   @override
   void initState() {
     super.initState();
+
     Future.microtask(() {
       final id = widget.id;
       context.read<DetailTvSeriesBloc>().add(FetchDetailTvSeries(id));
-      context
-          .read<WatchlistStatusTvSeriesBloc>()
-          .add(LoadWatchlistStatusTvSeries(id));
-      context
-          .read<RecommendationTvSeriesBloc>()
-          .add(FetchRecommendationTvSeries(id));
+      context.read<WatchlistStatusTvSeriesBloc>().add(
+            LoadWatchlistStatusTvSeries(id),
+          );
+      context.read<RecommendationTvSeriesBloc>().add(
+            FetchRecommendationTvSeries(id),
+          );
     });
   }
 
@@ -306,7 +306,6 @@ class DetailContent extends StatelessWidget {
 
 class TvSeriesRecommendationList extends StatelessWidget {
   final List<TvSeries> tvSeriesList;
-
   const TvSeriesRecommendationList({required this.tvSeriesList, super.key});
 
   @override

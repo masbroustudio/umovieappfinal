@@ -1,8 +1,8 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/movie.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movies/domain/usecases/get_watchlist_movies.dart';
@@ -23,52 +23,78 @@ void main() {
 
   final tWatchlistMoviesList = <Movie>[testWatchlistMovie];
 
-  test('initial state should be empty', () {
-    expect(watchlistMoviesBloc.state, WatchlistMoviesEmpty());
+  test('init state should be empty', () {
+    expect(
+      watchlistMoviesBloc.state,
+      WatchlistMoviesEmpty(),
+    );
   });
 
   blocTest<WatchlistMoviesBloc, WatchlistMoviesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is failed',
     build: () {
-      when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => Right(tWatchlistMoviesList));
+      when(
+        mockGetWatchlistMovies.execute(),
+      ).thenAnswer(
+        (_) async => Right(tWatchlistMoviesList),
+      );
       return watchlistMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchWatchlistMovies()),
+    act: (bloc) => bloc.add(
+      FetchWatchlistMovies(),
+    ),
     expect: () => [
       WatchlistMoviesLoading(),
       WatchlistMoviesHasData(tWatchlistMoviesList),
     ],
-    verify: (bloc) => verify(mockGetWatchlistMovies.execute()),
+    verify: (bloc) => verify(
+      mockGetWatchlistMovies.execute(),
+    ),
   );
 
   blocTest<WatchlistMoviesBloc, WatchlistMoviesState>(
-    'Should emit [Loading, Empty] when data is empty',
+    'Emit Loading Error when get watchlist tv series is failed',
     build: () {
-      when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => const Right([]));
+      when(
+        mockGetWatchlistMovies.execute(),
+      ).thenAnswer(
+        (_) async => const Left(
+          DatabaseFailure('Database Failure'),
+        ),
+      );
       return watchlistMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchWatchlistMovies()),
-    expect: () => [
-      WatchlistMoviesLoading(),
-      WatchlistMoviesEmpty(),
-    ],
-    verify: (bloc) => verify(mockGetWatchlistMovies.execute()),
-  );
-
-  blocTest<WatchlistMoviesBloc, WatchlistMoviesState>(
-    'Should emit [Loading, Error] when get watchlist tv series is unsuccessful',
-    build: () {
-      when(mockGetWatchlistMovies.execute()).thenAnswer(
-          (_) async => const Left(DatabaseFailure('Database Failure')));
-      return watchlistMoviesBloc;
-    },
-    act: (bloc) => bloc.add(FetchWatchlistMovies()),
+    act: (bloc) => bloc.add(
+      FetchWatchlistMovies(),
+    ),
     expect: () => [
       WatchlistMoviesLoading(),
       WatchlistMoviesError('Database Failure'),
     ],
-    verify: (bloc) => verify(mockGetWatchlistMovies.execute()),
+    verify: (bloc) => verify(
+      mockGetWatchlistMovies.execute(),
+    ),
+  );
+
+  blocTest<WatchlistMoviesBloc, WatchlistMoviesState>(
+    'Emit Loading Empty when data is empty',
+    build: () {
+      when(
+        mockGetWatchlistMovies.execute(),
+      ).thenAnswer(
+        (_) async => const Right([]),
+      );
+      return watchlistMoviesBloc;
+    },
+    act: (bloc) => bloc.add(
+      FetchWatchlistMovies(),
+    ),
+    expect: () => [
+      WatchlistMoviesLoading(),
+      WatchlistMoviesEmpty(),
+    ],
+    verify: (bloc) => verify(
+      mockGetWatchlistMovies.execute(),
+    ),
   );
 }

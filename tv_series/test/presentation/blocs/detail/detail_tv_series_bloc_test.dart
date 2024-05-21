@@ -22,30 +22,43 @@ void main() {
 
   const tId = 1;
 
-  test('initial state should be empty', () {
-    expect(detailTvSeriesBloc.state, DetailTvSeriesEmpty());
+  test('init state Detail Tv Series should be empty', () {
+    expect(
+      detailTvSeriesBloc.state,
+      DetailTvSeriesEmpty(),
+    );
   });
 
   blocTest<DetailTvSeriesBloc, DetailTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading hasData when data is success',
     build: () {
-      when(mockGetDetailTvSeries.execute(tId))
-          .thenAnswer((_) async => const Right(tTvSeriesDetail));
+      when(
+        mockGetDetailTvSeries.execute(tId),
+      ).thenAnswer(
+        (_) async => const Right(tTvSeriesDetail),
+      );
       return detailTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(const FetchDetailTvSeries(tId)),
+    act: (bloc) => bloc.add(
+      const FetchDetailTvSeries(tId),
+    ),
     expect: () => [
       DetailTvSeriesLoading(),
       const DetailTvSeriesHasData(tTvSeriesDetail),
     ],
-    verify: (bloc) => verify(mockGetDetailTvSeries.execute(tId)),
+    verify: (bloc) => verify(
+      mockGetDetailTvSeries.execute(tId),
+    ),
   );
 
   blocTest<DetailTvSeriesBloc, DetailTvSeriesState>(
-    'Should emit [Loading, Error] when get detail tv series is unsuccessful',
+    'Emit Loading Error when get detail tv series is failed',
     build: () {
-      when(mockGetDetailTvSeries.execute(tId))
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+      when(mockGetDetailTvSeries.execute(tId)).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return detailTvSeriesBloc;
     },
     act: (bloc) => bloc.add(const FetchDetailTvSeries(tId)),
@@ -53,6 +66,8 @@ void main() {
       DetailTvSeriesLoading(),
       const DetailTvSeriesError('Server Failure'),
     ],
-    verify: (bloc) => verify(mockGetDetailTvSeries.execute(tId)),
+    verify: (bloc) => verify(
+      mockGetDetailTvSeries.execute(tId),
+    ),
   );
 }

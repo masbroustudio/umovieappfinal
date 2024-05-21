@@ -39,40 +39,56 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets(
+      'Now Playing Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(() => mockNowPlayingTvSeriesBloc.state)
-        .thenReturn(NowPlayingTvSeriesLoading());
+    when(() => mockNowPlayingTvSeriesBloc.state).thenReturn(
+      NowPlayingTvSeriesLoading(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(makeTestableWidget(const NowPlayingTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const NowPlayingTvSeriesPage(),
+      ),
+    );
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets('Now Playing Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(() => mockNowPlayingTvSeriesBloc.state)
-        .thenReturn(const NowPlayingTvSeriesHasData([tTvSeries]));
+    when(() => mockNowPlayingTvSeriesBloc.state).thenReturn(
+      const NowPlayingTvSeriesHasData([tTvSeries]),
+    );
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(makeTestableWidget(const NowPlayingTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const NowPlayingTvSeriesPage(),
+      ),
+    );
 
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets('Now Playing Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(() => mockNowPlayingTvSeriesBloc.state)
-        .thenReturn(const NowPlayingTvSeriesError('Error message'));
+    when(() => mockNowPlayingTvSeriesBloc.state).thenReturn(
+      const NowPlayingTvSeriesError('Error message'),
+    );
 
     final textFinder = find.byKey(const Key('error_message'));
 
-    await tester.pumpWidget(makeTestableWidget(const NowPlayingTvSeriesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const NowPlayingTvSeriesPage(),
+      ),
+    );
 
     expect(textFinder, findsOneWidget);
   });

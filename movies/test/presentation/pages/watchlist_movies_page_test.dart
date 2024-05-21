@@ -37,21 +37,7 @@ void main() {
     );
   }
 
-  testWidgets('Page should display center progress bar when loading',
-      (WidgetTester tester) async {
-    when(() => mockWatchlistMoviesBloc.state)
-        .thenReturn(WatchlistMoviesLoading());
-
-    final progressBarFinder = find.byType(CircularProgressIndicator);
-    final centerFinder = find.byType(Center);
-
-    await tester.pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
-
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
-  });
-
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets('Watchlist Page should display ListView when data is loaded',
       (WidgetTester tester) async {
     when(() => mockWatchlistMoviesBloc.state)
         .thenReturn(WatchlistMoviesHasData(testMovieList));
@@ -63,27 +49,70 @@ void main() {
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets('Watchlist Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(() => mockWatchlistMoviesBloc.state)
-        .thenReturn(WatchlistMoviesError('Error message'));
+    when(() => mockWatchlistMoviesBloc.state).thenReturn(
+      WatchlistMoviesLoading(),
+    );
 
-    final textFinder = find.byKey(const Key('error_message'));
+    final progressBarFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const WatchlistMoviesPage(),
+      ),
+    );
 
-    expect(textFinder, findsOneWidget);
+    expect(
+      centerFinder,
+      findsOneWidget,
+    );
+    expect(
+      progressBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display text when data is empty',
+  testWidgets('Watchlist Page should display text when data is empty',
       (WidgetTester tester) async {
-    when(() => mockWatchlistMoviesBloc.state)
-        .thenReturn(WatchlistMoviesEmpty());
+    when(() => mockWatchlistMoviesBloc.state).thenReturn(
+      WatchlistMoviesEmpty(),
+    );
 
     final textErrorBarFinder = find.text('Empty Watchlist');
 
-    await tester.pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const WatchlistMoviesPage(),
+      ),
+    );
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Watchlist Page should display text with message when Error',
+      (WidgetTester tester) async {
+    when(() => mockWatchlistMoviesBloc.state).thenReturn(
+      WatchlistMoviesError('Error message'),
+    );
+
+    final textFinder = find.byKey(
+      const Key('error_message'),
+    );
+
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const WatchlistMoviesPage(),
+      ),
+    );
+
+    expect(
+      textFinder,
+      findsOneWidget,
+    );
   });
 }

@@ -15,14 +15,22 @@ void main() {
     usecase = SaveWatchlistMovie(mockMovieRepository);
   });
 
-  test('should save movie to the repository', () async {
+  test('Save movie to the repository', () async {
     // arrange
-    when(mockMovieRepository.saveWatchlist(testMovieDetail))
-        .thenAnswer((_) async => const Right('Add to Movie Watchlist'));
+    when(
+      mockMovieRepository.saveWatchlist(testMovieDetail),
+    ).thenAnswer(
+      (_) async => const Right('Add to Movie Watchlist'),
+    );
     // act
     final result = await usecase.execute(testMovieDetail);
     // assert
-    verify(mockMovieRepository.saveWatchlist(testMovieDetail));
-    expect(result, const Right('Add to Movie Watchlist'));
+    verify(
+      mockMovieRepository.saveWatchlist(testMovieDetail),
+    );
+    expect(
+      result,
+      const Right('Add to Movie Watchlist'),
+    );
   });
 }

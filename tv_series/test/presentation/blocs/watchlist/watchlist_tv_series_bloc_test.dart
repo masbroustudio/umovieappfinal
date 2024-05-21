@@ -23,52 +23,76 @@ void main() {
 
   final tWatchlistTvSeriesList = <TvSeries>[tWatchlistTvSeries];
 
-  test('initial state should be empty', () {
-    expect(watchlistTvSeriesBloc.state, WatchlistTvSeriesEmpty());
+  test('init state Watchlist Tv Series should be empty', () {
+    expect(
+      watchlistTvSeriesBloc.state,
+      WatchlistTvSeriesEmpty(),
+    );
   });
 
   blocTest<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetWatchlistTvSeries.execute())
-          .thenAnswer((_) async => Right(tWatchlistTvSeriesList));
+      when(
+        mockGetWatchlistTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => Right(tWatchlistTvSeriesList),
+      );
       return watchlistTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchWatchlistTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchWatchlistTvSeries(),
+    ),
     expect: () => [
       WatchlistTvSeriesLoading(),
       WatchlistTvSeriesHasData(tWatchlistTvSeriesList),
     ],
-    verify: (bloc) => verify(mockGetWatchlistTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetWatchlistTvSeries.execute(),
+    ),
   );
 
   blocTest<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
-    'Should emit [Loading, Empty] when data is empty',
-    build: () {
-      when(mockGetWatchlistTvSeries.execute())
-          .thenAnswer((_) async => const Right([]));
-      return watchlistTvSeriesBloc;
-    },
-    act: (bloc) => bloc.add(FetchWatchlistTvSeries()),
-    expect: () => [
-      WatchlistTvSeriesLoading(),
-      WatchlistTvSeriesEmpty(),
-    ],
-    verify: (bloc) => verify(mockGetWatchlistTvSeries.execute()),
-  );
-
-  blocTest<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
-    'Should emit [Loading, Error] when get watchlist tv series is unsuccessful',
+    'Emit Loading Error when get watchlist tv series is failed',
     build: () {
       when(mockGetWatchlistTvSeries.execute()).thenAnswer(
-          (_) async => const Left(DatabaseFailure('Database Failure')));
+        (_) async => const Left(
+          DatabaseFailure('Database Failure'),
+        ),
+      );
       return watchlistTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchWatchlistTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchWatchlistTvSeries(),
+    ),
     expect: () => [
       WatchlistTvSeriesLoading(),
       const WatchlistTvSeriesError('Database Failure'),
     ],
-    verify: (bloc) => verify(mockGetWatchlistTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetWatchlistTvSeries.execute(),
+    ),
+  );
+
+  blocTest<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+    'Emit Loading Empty when data is empty',
+    build: () {
+      when(
+        mockGetWatchlistTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => const Right([]),
+      );
+      return watchlistTvSeriesBloc;
+    },
+    act: (bloc) => bloc.add(
+      FetchWatchlistTvSeries(),
+    ),
+    expect: () => [
+      WatchlistTvSeriesLoading(),
+      WatchlistTvSeriesEmpty(),
+    ],
+    verify: (bloc) => verify(
+      mockGetWatchlistTvSeries.execute(),
+    ),
   );
 }

@@ -11,19 +11,29 @@ class WatchlistTvSeriesBloc
   final GetWatchlistTvSeries _getWatchlistTvSeries;
 
   WatchlistTvSeriesBloc(this._getWatchlistTvSeries)
-      : super(WatchlistTvSeriesEmpty()) {
+      : super(
+          WatchlistTvSeriesEmpty(),
+        ) {
     on<FetchWatchlistTvSeries>((_, emit) async {
-      emit(WatchlistTvSeriesLoading());
+      emit(
+        WatchlistTvSeriesLoading(),
+      );
 
       final result = await _getWatchlistTvSeries.execute();
 
       result.fold(
-        (failure) => emit(WatchlistTvSeriesError(failure.message)),
+        (failure) => emit(
+          WatchlistTvSeriesError(failure.message),
+        ),
         (data) {
           if (data.isEmpty) {
-            emit(WatchlistTvSeriesEmpty());
+            emit(
+              WatchlistTvSeriesEmpty(),
+            );
           } else {
-            emit(WatchlistTvSeriesHasData(data));
+            emit(
+              WatchlistTvSeriesHasData(data),
+            );
           }
         },
       );

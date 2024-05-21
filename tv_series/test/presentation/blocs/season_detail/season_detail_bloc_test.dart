@@ -23,15 +23,21 @@ void main() {
   const tId = 1;
   const tSeasonNumber = 1;
 
-  test('initial state should be empty', () {
-    expect(seasonDetailBloc.state, SeasonDetailEmpty());
+  test('init state Season Detail Tv Series should be empty', () {
+    expect(
+      seasonDetailBloc.state,
+      SeasonDetailEmpty(),
+    );
   });
 
   blocTest<SeasonDetailBloc, SeasonDetailState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetSeasonDetail.execute(tId, tSeasonNumber))
-          .thenAnswer((_) async => const Right(tSeasonDetail));
+      when(
+        mockGetSeasonDetail.execute(tId, tSeasonNumber),
+      ).thenAnswer(
+        (_) async => const Right(tSeasonDetail),
+      );
       return seasonDetailBloc;
     },
     act: (bloc) => bloc.add(const FetchSeasonDetail(
@@ -42,14 +48,21 @@ void main() {
       SeasonDetailLoading(),
       const SeasonDetailHasData(tSeasonDetail),
     ],
-    verify: (bloc) => verify(mockGetSeasonDetail.execute(tId, tSeasonNumber)),
+    verify: (bloc) => verify(
+      mockGetSeasonDetail.execute(tId, tSeasonNumber),
+    ),
   );
 
   blocTest<SeasonDetailBloc, SeasonDetailState>(
-    'Should emit [Loading, Error] when get detail season is unsuccessful',
+    'Emit Loading Error when get detail season is failed',
     build: () {
-      when(mockGetSeasonDetail.execute(tId, tSeasonNumber))
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+      when(
+        mockGetSeasonDetail.execute(tId, tSeasonNumber),
+      ).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return seasonDetailBloc;
     },
     act: (bloc) => bloc.add(const FetchSeasonDetail(
@@ -60,6 +73,8 @@ void main() {
       SeasonDetailLoading(),
       const SeasonDetailError('Server Failure'),
     ],
-    verify: (bloc) => verify(mockGetSeasonDetail.execute(tId, tSeasonNumber)),
+    verify: (bloc) => verify(
+      mockGetSeasonDetail.execute(tId, tSeasonNumber),
+    ),
   );
 }

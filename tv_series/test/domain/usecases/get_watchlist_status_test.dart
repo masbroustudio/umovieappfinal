@@ -15,13 +15,13 @@ void main() {
 
   const tId = 1;
 
-  test('should get watchlist status from repository', () async {
-    // arrange
-    when(mockTvSeriesRepository.isAddedToWatchlist(1))
-        .thenAnswer((_) async => true);
-    // act
+  test('GET Watchlist Status from repository', () async {
+    when(
+      mockTvSeriesRepository.isAddedToWatchlist(1),
+    ).thenAnswer((_) async => true);
+
     final result = await usecase.execute(tId);
-    // assert
+
     expect(result, true);
   });
 }

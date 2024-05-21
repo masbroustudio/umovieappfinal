@@ -23,38 +23,57 @@ void main() {
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  test('initial state should be empty', () {
-    expect(popularTvSeriesBloc.state, PopularTvSeriesEmpty());
+  test('init state Popular Tv Series should be empty', () {
+    expect(
+      popularTvSeriesBloc.state,
+      PopularTvSeriesEmpty(),
+    );
   });
 
   blocTest<PopularTvSeriesBloc, PopularTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetPopularTvSeries.execute())
-          .thenAnswer((_) async => Right(tTvSeriesList));
+      when(
+        mockGetPopularTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => Right(tTvSeriesList),
+      );
       return popularTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchPopularTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchPopularTvSeries(),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       PopularTvSeriesLoading(),
       PopularTvSeriesHasData(tTvSeriesList),
     ],
-    verify: (bloc) => verify(mockGetPopularTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetPopularTvSeries.execute(),
+    ),
   );
 
   blocTest<PopularTvSeriesBloc, PopularTvSeriesState>(
-    'Should emit [Loading, Error] when get popular tv series is unsuccessful',
+    'Emit Loading Error when get popular tv series is failed',
     build: () {
-      when(mockGetPopularTvSeries.execute())
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+      when(
+        mockGetPopularTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return popularTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchPopularTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchPopularTvSeries(),
+    ),
     expect: () => [
       PopularTvSeriesLoading(),
       const PopularTvSeriesError('Server Failure'),
     ],
-    verify: (bloc) => verify(mockGetPopularTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetPopularTvSeries.execute(),
+    ),
   );
 }

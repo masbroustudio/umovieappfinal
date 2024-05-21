@@ -18,14 +18,18 @@ void main() {
   const tId = 1;
   const tSeasonNumber = 1;
 
-  test('should get list of now playing tv series from the repository',
-      () async {
-    // arrange
-    when(mockTvSeriesRepository.getSeasonDetail(tId, tSeasonNumber))
-        .thenAnswer((_) async => const Right(tSeasonDetail));
-    // act
+  test('GET Season Detail Tv Series from the repository', () async {
+    when(
+      mockTvSeriesRepository.getSeasonDetail(tId, tSeasonNumber),
+    ).thenAnswer(
+      (_) async => const Right(tSeasonDetail),
+    );
+
     final result = await usecase.execute(tId, tSeasonNumber);
-    // assert
-    expect(result, const Right(tSeasonDetail));
+
+    expect(
+      result,
+      const Right(tSeasonDetail),
+    );
   });
 }

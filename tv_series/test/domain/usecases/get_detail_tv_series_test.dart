@@ -17,13 +17,18 @@ void main() {
 
   const tId = 1;
 
-  test('should get tv series detail from the repository', () async {
-    // arrange
-    when(mockTvSeriesRepository.getDetail(tId))
-        .thenAnswer((_) async => const Right(tTvSeriesDetail));
-    // act
+  test('GET Tv Series detail from the repository', () async {
+    when(
+      mockTvSeriesRepository.getDetail(tId),
+    ).thenAnswer(
+      (_) async => const Right(tTvSeriesDetail),
+    );
+
     final result = await usecase.execute(tId);
-    // assert
-    expect(result, const Right(tTvSeriesDetail));
+
+    expect(
+      result,
+      const Right(tTvSeriesDetail),
+    );
   });
 }

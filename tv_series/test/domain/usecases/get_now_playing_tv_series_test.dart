@@ -17,14 +17,18 @@ void main() {
 
   final tTvSeries = <TvSeries>[];
 
-  test('should get list of now playing tv series from the repository',
-      () async {
-    // arrange
-    when(mockTvSeriesRepository.getNowPlaying())
-        .thenAnswer((_) async => Right(tTvSeries));
-    // act
+  test('GET Now Playing Tv Series List from the repository', () async {
+    when(
+      mockTvSeriesRepository.getNowPlaying(),
+    ).thenAnswer(
+      (_) async => Right(tTvSeries),
+    );
+
     final result = await usecase.execute();
-    // assert
-    expect(result, Right(tTvSeries));
+
+    expect(
+      result,
+      Right(tTvSeries),
+    );
   });
 }

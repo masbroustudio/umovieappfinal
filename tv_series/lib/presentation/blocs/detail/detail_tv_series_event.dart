@@ -9,7 +9,6 @@ abstract class DetailTvSeriesEvent extends Equatable {
 
 class FetchDetailTvSeries extends DetailTvSeriesEvent {
   final int id;
-
   const FetchDetailTvSeries(this.id);
 
   @override

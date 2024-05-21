@@ -17,13 +17,19 @@ void main() {
 
   final tMovies = <Movie>[];
 
-  test('should get list of movies from repository', () async {
+  test('GET list of top rated movies from repository', () async {
     // arrange
-    when(mockMovieRepository.getTopRated())
-        .thenAnswer((_) async => Right(tMovies));
+    when(
+      mockMovieRepository.getTopRated(),
+    ).thenAnswer(
+      (_) async => Right(tMovies),
+    );
     // act
     final result = await usecase.execute();
     // assert
-    expect(result, Right(tMovies));
+    expect(
+      result,
+      Right(tMovies),
+    );
   });
 }

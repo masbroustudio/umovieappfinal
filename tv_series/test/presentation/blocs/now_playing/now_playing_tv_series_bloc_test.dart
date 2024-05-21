@@ -21,40 +21,57 @@ void main() {
     nowPlayingTvSeriesBloc = NowPlayingTvSeriesBloc(mockGetNowPlayingTvSeries);
   });
 
-  test('initial state should be empty', () {
-    expect(nowPlayingTvSeriesBloc.state, NowPlayingTvSeriesEmpty());
+  test('init state Now Playing Tv Series should be empty', () {
+    expect(
+      nowPlayingTvSeriesBloc.state,
+      NowPlayingTvSeriesEmpty(),
+    );
   });
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
   blocTest<NowPlayingTvSeriesBloc, NowPlayingTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten succesfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetNowPlayingTvSeries.execute())
-          .thenAnswer((_) async => Right(tTvSeriesList));
+      when(
+        mockGetNowPlayingTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => Right(tTvSeriesList),
+      );
       return nowPlayingTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchNowPlayingTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchNowPlayingTvSeries(),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingTvSeriesLoading(),
       NowPlayingTvSeriesHasData(tTvSeriesList),
     ],
-    verify: (bloc) => verify(mockGetNowPlayingTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetNowPlayingTvSeries.execute(),
+    ),
   );
 
   blocTest<NowPlayingTvSeriesBloc, NowPlayingTvSeriesState>(
-    'Should emit [Loading, Error] when get now playing tv series is unsuccessful',
+    'Emit Loading Error when get now playing tv series is failed',
     build: () {
-      when(mockGetNowPlayingTvSeries.execute())
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+      when(mockGetNowPlayingTvSeries.execute()).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return nowPlayingTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchNowPlayingTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchNowPlayingTvSeries(),
+    ),
     expect: () => [
       NowPlayingTvSeriesLoading(),
       const NowPlayingTvSeriesError('Server Failure'),
     ],
-    verify: (bloc) => verify(mockGetNowPlayingTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetNowPlayingTvSeries.execute(),
+    ),
   );
 }

@@ -13,7 +13,6 @@ class TopRatedTvSeriesLoading extends TopRatedTvSeriesState {}
 
 class TopRatedTvSeriesError extends TopRatedTvSeriesState {
   final String message;
-
   const TopRatedTvSeriesError(this.message);
 
   @override
@@ -22,7 +21,6 @@ class TopRatedTvSeriesError extends TopRatedTvSeriesState {
 
 class TopRatedTvSeriesHasData extends TopRatedTvSeriesState {
   final List<TvSeries> result;
-
   const TopRatedTvSeriesHasData(this.result);
 
   @override

@@ -23,16 +23,18 @@ class SearchTvSeriesPage extends StatelessWidget {
             children: [
               TextField(
                 onChanged: (query) {
-                  context
-                      .read<SearchTvSeriesBloc>()
-                      .add(SearchTvSeriesOnQueryChanged(query));
+                  context.read<SearchTvSeriesBloc>().add(
+                        SearchTvSeriesOnQueryChanged(query),
+                      );
                 },
                 decoration: const InputDecoration(
                   hintText: 'Search title',
                   prefixIcon: Icon(Icons.search),
                   contentPadding: EdgeInsets.all(14),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(16),
+                    ),
                   ),
                 ),
                 textInputAction: TextInputAction.search,

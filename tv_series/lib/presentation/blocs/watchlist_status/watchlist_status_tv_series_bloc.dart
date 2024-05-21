@@ -1,6 +1,6 @@
-import 'package:core/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:core/domain/entities/tv_series_detail.dart';
 import 'package:tv_series/domain/usecases/get_watchlist_status_tv_series.dart';
 import 'package:tv_series/domain/usecases/remove_watchlist_tv_series.dart';
 import 'package:tv_series/domain/usecases/save_watchlist_tv_series.dart';
@@ -23,6 +23,16 @@ class WatchlistStatusTvSeriesBloc
     required this.removeWatchlistTvSeries,
   }) : super(const WatchlistStatusTvSeriesState(
             isAddedToWatchlist: false, message: '')) {
+    on<LoadWatchlistStatusTvSeries>((event, emit) async {
+      final id = event.id;
+      final status = await getWatchListStatusTvSeries.execute(id);
+
+      emit(WatchlistStatusTvSeriesState(
+        isAddedToWatchlist: status,
+        message: '',
+      ));
+    });
+
     on<AddWatchlistTvSeries>((event, emit) async {
       final tvSeriesDetail = event.tvSeriesDetail;
       final id = tvSeriesDetail.id;
@@ -67,16 +77,6 @@ class WatchlistStatusTvSeriesBloc
           ));
         },
       );
-    });
-
-    on<LoadWatchlistStatusTvSeries>((event, emit) async {
-      final id = event.id;
-      final status = await getWatchListStatusTvSeries.execute(id);
-
-      emit(WatchlistStatusTvSeriesState(
-        isAddedToWatchlist: status,
-        message: '',
-      ));
     });
   }
 }

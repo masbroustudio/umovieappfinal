@@ -40,9 +40,12 @@ void main() {
   const tId = 1;
   const tSeasonNumber = 1;
 
-  testWidgets('Page should display center progress bar when loading',
+  testWidgets(
+      'Season Detail Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(() => mockSeasonDetailBloc.state).thenReturn(SeasonDetailLoading());
+    when(() => mockSeasonDetailBloc.state).thenReturn(
+      SeasonDetailLoading(),
+    );
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
@@ -52,14 +55,22 @@ void main() {
       seasonNumber: tSeasonNumber,
     )));
 
-    expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
+    expect(
+      centerFinder,
+      findsOneWidget,
+    );
+
+    expect(
+      progressBarFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display ListView when data is loaded',
+  testWidgets('Season Detail Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(() => mockSeasonDetailBloc.state)
-        .thenReturn(const SeasonDetailHasData(tSeasonDetail));
+    when(() => mockSeasonDetailBloc.state).thenReturn(
+      const SeasonDetailHasData(tSeasonDetail),
+    );
 
     final listViewFinder = find.byType(ListView);
 
@@ -67,20 +78,29 @@ void main() {
       const SeasonDetailPage(id: tId, seasonNumber: tSeasonNumber),
     ));
 
-    expect(listViewFinder, findsOneWidget);
+    expect(
+      listViewFinder,
+      findsOneWidget,
+    );
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets('Season Detail Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(() => mockSeasonDetailBloc.state)
-        .thenReturn(const SeasonDetailError('Error message'));
+    when(() => mockSeasonDetailBloc.state).thenReturn(
+      const SeasonDetailError('Error message'),
+    );
 
-    final textFinder = find.byKey(const Key('error_message'));
+    final textFinder = find.byKey(
+      const Key('error_message'),
+    );
 
     await tester.pumpWidget(makeTestableWidget(
       const SeasonDetailPage(id: tId, seasonNumber: tSeasonNumber),
     ));
 
-    expect(textFinder, findsOneWidget);
+    expect(
+      textFinder,
+      findsOneWidget,
+    );
   });
 }

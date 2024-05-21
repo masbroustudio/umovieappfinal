@@ -1,9 +1,9 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/presentation/blocs/detail/detail_movie_bloc.dart';
 import 'package:movies/presentation/pages/movie_detail_page.dart';
@@ -55,13 +55,22 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: tId),
+      ),
+    );
     await tester.pump();
 
-    await tester.tap(find.byType(ElevatedButton));
+    await tester.tap(
+      find.byType(ElevatedButton),
+    );
     await tester.pump();
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(
+      watchlistButtonIcon,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
@@ -79,13 +88,22 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: tId),
+      ),
+    );
     await tester.pump();
 
-    await tester.tap(find.byType(ElevatedButton));
+    await tester.tap(
+      find.byType(ElevatedButton),
+    );
     await tester.pump();
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(
+      watchlistButtonIcon,
+      findsOneWidget,
+    );
   });
 
   testWidgets('Show display snackbar when Add to Movie Watchlist',
@@ -107,15 +125,31 @@ void main() {
     final snackbar = find.byType(SnackBar);
     final textMessage = find.text('Add to Movie Watchlist');
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: tId),
+      ),
+    );
 
-    expect(snackbar, findsNothing);
-    expect(textMessage, findsNothing);
+    expect(
+      snackbar,
+      findsNothing,
+    );
+    expect(
+      textMessage,
+      findsNothing,
+    );
 
     await tester.pump();
 
-    expect(snackbar, findsOneWidget);
-    expect(textMessage, findsOneWidget);
+    expect(
+      snackbar,
+      findsOneWidget,
+    );
+    expect(
+      textMessage,
+      findsOneWidget,
+    );
   });
 
   testWidgets('Show display alert dialog when add to watchlist failed',
@@ -137,19 +171,35 @@ void main() {
     final alertDialog = find.byType(AlertDialog);
     final textMessage = find.text('Failed Add to Watchlist');
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: tId)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: tId),
+      ),
+    );
 
-    expect(alertDialog, findsNothing);
-    expect(textMessage, findsNothing);
+    expect(
+      alertDialog,
+      findsNothing,
+    );
+    expect(
+      textMessage,
+      findsNothing,
+    );
 
     await tester.pump();
 
-    expect(alertDialog, findsOneWidget);
-    expect(textMessage, findsOneWidget);
+    expect(
+      alertDialog,
+      findsOneWidget,
+    );
+    expect(
+      textMessage,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
-      'Movie detail page should display error text when no internet network',
+      'Should display error text when Movie detail page no internet network',
       (WidgetTester tester) async {
     when(() => mockDetailMovieBloc.state).thenReturn(
       DetailMovieState.initial().copyWith(
@@ -160,14 +210,21 @@ void main() {
 
     final textErrorBarFinder = find.text('Failed to connect to the network');
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: 1),
+      ),
+    );
     await tester.pump();
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
-      'Recommendations Movies should display error text when data is empty',
+      'Should display error text when Recommendations Movies data is empty',
       (WidgetTester tester) async {
     when(() => mockDetailMovieBloc.state).thenReturn(
       DetailMovieState.initial().copyWith(
@@ -180,14 +237,21 @@ void main() {
 
     final textErrorBarFinder = find.text('No Recommendations');
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: 1),
+      ),
+    );
     await tester.pump();
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 
   testWidgets(
-      'Recommendations Movies should display error text when get data is unsuccesful',
+      'Should display error text when Recommendations Movies get data is failed',
       (WidgetTester tester) async {
     when(() => mockDetailMovieBloc.state).thenReturn(
       DetailMovieState.initial().copyWith(
@@ -201,9 +265,16 @@ void main() {
 
     final textErrorBarFinder = find.text('Error');
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pumpWidget(
+      makeTestableWidget(
+        const MovieDetailPage(id: 1),
+      ),
+    );
     await tester.pump();
 
-    expect(textErrorBarFinder, findsOneWidget);
+    expect(
+      textErrorBarFinder,
+      findsOneWidget,
+    );
   });
 }

@@ -25,54 +25,80 @@ void main() {
   const tId = 1;
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  test('initial state should be empty', () {
-    expect(recommendationTvSeriesBloc.state, RecommendationTvSeriesEmpty());
+  test('init state Recomendatin Tv Series should be empty', () {
+    expect(
+      recommendationTvSeriesBloc.state,
+      RecommendationTvSeriesEmpty(),
+    );
   });
 
   blocTest<RecommendationTvSeriesBloc, RecommendationTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetRecommendationTvSeries.execute(tId))
-          .thenAnswer((_) async => Right(tTvSeriesList));
+      when(
+        mockGetRecommendationTvSeries.execute(tId),
+      ).thenAnswer(
+        (_) async => Right(tTvSeriesList),
+      );
       return recommendationTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(const FetchRecommendationTvSeries(tId)),
+    act: (bloc) => bloc.add(
+      const FetchRecommendationTvSeries(tId),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       RecommendationTvSeriesLoading(),
       RecommendationTvSeriesHasData(tTvSeriesList),
     ],
-    verify: (bloc) => verify(mockGetRecommendationTvSeries.execute(tId)),
+    verify: (bloc) => verify(
+      mockGetRecommendationTvSeries.execute(tId),
+    ),
   );
 
   blocTest<RecommendationTvSeriesBloc, RecommendationTvSeriesState>(
-    'Should emit [Loading, Empty] when data is empty',
+    'Emit Loading Error when get recommendations tv series is failed',
     build: () {
-      when(mockGetRecommendationTvSeries.execute(tId))
-          .thenAnswer((_) async => const Right([]));
+      when(
+        mockGetRecommendationTvSeries.execute(tId),
+      ).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return recommendationTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(const FetchRecommendationTvSeries(tId)),
+    act: (bloc) => bloc.add(
+      const FetchRecommendationTvSeries(tId),
+    ),
+    expect: () => [
+      RecommendationTvSeriesLoading(),
+      const RecommendationTvSeriesError('Server Failure'),
+    ],
+    verify: (bloc) => verify(
+      mockGetRecommendationTvSeries.execute(tId),
+    ),
+  );
+
+  blocTest<RecommendationTvSeriesBloc, RecommendationTvSeriesState>(
+    'Emit Loading Empty when data is empty',
+    build: () {
+      when(
+        mockGetRecommendationTvSeries.execute(tId),
+      ).thenAnswer(
+        (_) async => const Right([]),
+      );
+      return recommendationTvSeriesBloc;
+    },
+    act: (bloc) => bloc.add(const FetchRecommendationTvSeries(
+      tId,
+    )),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       RecommendationTvSeriesLoading(),
       RecommendationTvSeriesEmpty(),
     ],
-    verify: (bloc) => verify(mockGetRecommendationTvSeries.execute(tId)),
-  );
-
-  blocTest<RecommendationTvSeriesBloc, RecommendationTvSeriesState>(
-    'Should emit [Loading, Error] when get recommendations tv series is unsuccessful',
-    build: () {
-      when(mockGetRecommendationTvSeries.execute(tId))
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
-      return recommendationTvSeriesBloc;
-    },
-    act: (bloc) => bloc.add(const FetchRecommendationTvSeries(tId)),
-    expect: () => [
-      RecommendationTvSeriesLoading(),
-      const RecommendationTvSeriesError('Server Failure'),
-    ],
-    verify: (bloc) => verify(mockGetRecommendationTvSeries.execute(tId)),
+    verify: (bloc) => verify(
+      mockGetRecommendationTvSeries.execute(tId),
+    ),
   );
 }

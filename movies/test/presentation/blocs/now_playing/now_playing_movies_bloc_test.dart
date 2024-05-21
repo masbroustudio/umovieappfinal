@@ -21,56 +21,82 @@ void main() {
     nowPlayingMoviesBloc = NowPlayingMoviesBloc(mockGetNowPlayingMovies);
   });
 
-  test('initial state should be empty', () {
-    expect(nowPlayingMoviesBloc.state, NowPlayingMoviesEmpty());
+  test('init state should be empty', () {
+    expect(
+      nowPlayingMoviesBloc.state,
+      NowPlayingMoviesEmpty(),
+    );
   });
 
   final tMovieList = <Movie>[testMovie];
 
   blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
-    'Should emit [Loading, HasData] when data is gotten succesfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Right(tMovieList));
+      when(
+        mockGetNowPlayingMovies.execute(),
+      ).thenAnswer(
+        (_) async => Right(tMovieList),
+      );
       return nowPlayingMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchNowPlayingMovies()),
+    act: (bloc) => bloc.add(
+      FetchNowPlayingMovies(),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingMoviesLoading(),
       NowPlayingMoviesHasData(tMovieList),
     ],
-    verify: (bloc) => verify(mockGetNowPlayingMovies.execute()),
+    verify: (bloc) => verify(
+      mockGetNowPlayingMovies.execute(),
+    ),
   );
 
   blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
-    'Should emit [Loading, Empty] when data is empty',
+    'Emit Loading Error when get now playing movies is failed',
     build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => const Right([]));
+      when(
+        mockGetNowPlayingMovies.execute(),
+      ).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return nowPlayingMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchNowPlayingMovies()),
+    act: (bloc) => bloc.add(
+      FetchNowPlayingMovies(),
+    ),
+    expect: () => [
+      NowPlayingMoviesLoading(),
+      NowPlayingMoviesError('Server Failure'),
+    ],
+    verify: (bloc) => verify(
+      mockGetNowPlayingMovies.execute(),
+    ),
+  );
+
+  blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
+    'Emit Loading Empty when data is empty',
+    build: () {
+      when(
+        mockGetNowPlayingMovies.execute(),
+      ).thenAnswer(
+        (_) async => const Right([]),
+      );
+      return nowPlayingMoviesBloc;
+    },
+    act: (bloc) => bloc.add(
+      FetchNowPlayingMovies(),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingMoviesLoading(),
       NowPlayingMoviesEmpty(),
     ],
-    verify: (bloc) => verify(mockGetNowPlayingMovies.execute()),
-  );
-
-  blocTest<NowPlayingMoviesBloc, NowPlayingMoviesState>(
-    'Should emit [Loading, Error] when get now playing movies is unsuccessful',
-    build: () {
-      when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
-      return nowPlayingMoviesBloc;
-    },
-    act: (bloc) => bloc.add(FetchNowPlayingMovies()),
-    expect: () => [
-      NowPlayingMoviesLoading(),
-      NowPlayingMoviesError('Server Failure'),
-    ],
-    verify: (bloc) => verify(mockGetNowPlayingMovies.execute()),
+    verify: (bloc) => verify(
+      mockGetNowPlayingMovies.execute(),
+    ),
   );
 }

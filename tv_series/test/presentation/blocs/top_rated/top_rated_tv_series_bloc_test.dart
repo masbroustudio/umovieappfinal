@@ -23,38 +23,57 @@ void main() {
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  test('initial state should be empty', () {
-    expect(topRatedTvSeriesBloc.state, TopRatedTvSeriesEmpty());
+  test('init state Top Rated Tv Series should be empty', () {
+    expect(
+      topRatedTvSeriesBloc.state,
+      TopRatedTvSeriesEmpty(),
+    );
   });
 
   blocTest<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
-    'Should emit [Loading, HasData] when data is gotten successfully',
+    'Emit Loading has Data when data is success',
     build: () {
-      when(mockGetTopRatedTvSeries.execute())
-          .thenAnswer((_) async => Right(tTvSeriesList));
+      when(
+        mockGetTopRatedTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => Right(tTvSeriesList),
+      );
       return topRatedTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchTopRatedTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchTopRatedTvSeries(),
+    ),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       TopRatedTvSeriesLoading(),
       TopRatedTvSeriesHasData(tTvSeriesList),
     ],
-    verify: (bloc) => verify(mockGetTopRatedTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetTopRatedTvSeries.execute(),
+    ),
   );
 
   blocTest<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
-    'Should emit [Loading, Error] when get top rated tv series is unsuccessful',
+    'Emit Loading Error when get top rated tv series is failed',
     build: () {
-      when(mockGetTopRatedTvSeries.execute())
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+      when(
+        mockGetTopRatedTvSeries.execute(),
+      ).thenAnswer(
+        (_) async => const Left(
+          ServerFailure('Server Failure'),
+        ),
+      );
       return topRatedTvSeriesBloc;
     },
-    act: (bloc) => bloc.add(FetchTopRatedTvSeries()),
+    act: (bloc) => bloc.add(
+      FetchTopRatedTvSeries(),
+    ),
     expect: () => [
       TopRatedTvSeriesLoading(),
       const TopRatedTvSeriesError('Server Failure'),
     ],
-    verify: (bloc) => verify(mockGetTopRatedTvSeries.execute()),
+    verify: (bloc) => verify(
+      mockGetTopRatedTvSeries.execute(),
+    ),
   );
 }

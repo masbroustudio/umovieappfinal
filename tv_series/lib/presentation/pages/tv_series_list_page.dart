@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv_series.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:tv_series/presentation/blocs/now_playing/now_playing_tv_series_bloc.dart';
 import 'package:tv_series/presentation/blocs/popular/popular_tv_series_bloc.dart';
 import 'package:tv_series/presentation/blocs/top_rated/top_rated_tv_series_bloc.dart';
@@ -54,13 +54,19 @@ class _TvSeriesListPageState extends State<TvSeriesListPage> {
               BlocBuilder<NowPlayingTvSeriesBloc, NowPlayingTvSeriesState>(
                 builder: (_, state) {
                   if (state is NowPlayingTvSeriesLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else if (state is NowPlayingTvSeriesHasData) {
                     return TvSeriesList(state.result);
                   } else if (state is NowPlayingTvSeriesError) {
-                    return Center(child: Text(state.message));
+                    return Center(
+                      child: Text(state.message),
+                    );
                   } else {
-                    return const Center(child: Text('Failed'));
+                    return const Center(
+                      child: Text('Failed'),
+                    );
                   }
                 },
               ),
@@ -73,13 +79,19 @@ class _TvSeriesListPageState extends State<TvSeriesListPage> {
               BlocBuilder<PopularTvSeriesBloc, PopularTvSeriesState>(
                 builder: (_, state) {
                   if (state is PopularTvSeriesLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else if (state is PopularTvSeriesHasData) {
                     return TvSeriesList(state.result);
                   } else if (state is PopularTvSeriesError) {
-                    return Center(child: Text(state.message));
+                    return Center(
+                      child: Text(state.message),
+                    );
                   } else {
-                    return const Center(child: Text('Failed'));
+                    return const Center(
+                      child: Text('Failed'),
+                    );
                   }
                 },
               ),
@@ -92,13 +104,19 @@ class _TvSeriesListPageState extends State<TvSeriesListPage> {
               BlocBuilder<TopRatedTvSeriesBloc, TopRatedTvSeriesState>(
                 builder: (_, state) {
                   if (state is TopRatedTvSeriesLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else if (state is TopRatedTvSeriesHasData) {
                     return TvSeriesList(state.result);
                   } else if (state is TopRatedTvSeriesError) {
-                    return Center(child: Text(state.message));
+                    return Center(
+                      child: Text(state.message),
+                    );
                   } else {
-                    return const Center(child: Text('Failed'));
+                    return const Center(
+                      child: Text('Failed'),
+                    );
                   }
                 },
               ),
@@ -159,7 +177,9 @@ class TvSeriesList extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(16),
+                ),
                 child: CachedNetworkImage(
                   imageUrl: '$baseImageUrl${item.posterPath}',
                   placeholder: (context, url) => const Center(
