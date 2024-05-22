@@ -23,6 +23,7 @@ class _SeasonDetailPageState extends State<SeasonDetailPage> {
   @override
   void initState() {
     super.initState();
+
     Future.microtask(
       () => context.read<SeasonDetailBloc>().add(FetchSeasonDetail(
             id: widget.id,
@@ -153,8 +154,8 @@ class EpisodeCardList extends StatelessWidget {
                       Text(
                         episode.name,
                         style: kHeading6,
-                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
                     ],
                   ),
@@ -165,8 +166,8 @@ class EpisodeCardList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8, bottom: 12),
             child: Text(
-              episode.overview,
               textAlign: TextAlign.justify,
+              episode.overview,
             ),
           ),
         ],

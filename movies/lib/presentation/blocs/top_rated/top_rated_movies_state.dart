@@ -11,7 +11,6 @@ class TopRatedMoviesLoading extends TopRatedMoviesState {}
 
 class TopRatedMoviesHasData extends TopRatedMoviesState {
   final List<Movie> result;
-
   TopRatedMoviesHasData(this.result);
 
   @override
@@ -20,7 +19,6 @@ class TopRatedMoviesHasData extends TopRatedMoviesState {
 
 class TopRatedMoviesError extends TopRatedMoviesState {
   final String message;
-
   TopRatedMoviesError(this.message);
 
   @override

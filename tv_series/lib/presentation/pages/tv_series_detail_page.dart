@@ -26,7 +26,9 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
 
     Future.microtask(() {
       final id = widget.id;
-      context.read<DetailTvSeriesBloc>().add(FetchDetailTvSeries(id));
+      context.read<DetailTvSeriesBloc>().add(
+            FetchDetailTvSeries(id),
+          );
       context.read<WatchlistStatusTvSeriesBloc>().add(
             LoadWatchlistStatusTvSeries(id),
           );
@@ -46,7 +48,9 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is DetailTvSeriesHasData) {
-            return SafeArea(child: DetailContent(state.result));
+            return SafeArea(
+              child: DetailContent(state.result),
+            );
           } else if (state is DetailTvSeriesError) {
             return Center(
               child: Text(state.message),
@@ -62,7 +66,6 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
 
 class DetailContent extends StatelessWidget {
   final TvSeriesDetail tvSeriesDetail;
-
   const DetailContent(this.tvSeriesDetail, {super.key});
 
   @override
@@ -231,8 +234,8 @@ class DetailContent extends StatelessWidget {
                                 } else {
                                   return Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.grey[800],
                                       borderRadius: BorderRadius.circular(8),
+                                      color: Colors.grey[800],
                                     ),
                                     height: 150,
                                     child: const Center(
@@ -257,9 +260,9 @@ class DetailContent extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Container(
-                        color: Colors.white,
                         height: 4,
                         width: 48,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -274,8 +277,8 @@ class DetailContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
+            backgroundColor: kRichBlack,
             child: IconButton(
               key: const Key('iconBack'),
               icon: const Icon(Icons.arrow_back),
@@ -290,17 +293,7 @@ class DetailContent extends StatelessWidget {
   }
 
   String _showGenres(List<Genre> genres) {
-    String result = '';
-
-    for (var genre in genres) {
-      result += '${genre.name}, ';
-    }
-
-    if (result.isEmpty) {
-      return result;
-    }
-
-    return result.substring(0, result.length - 2);
+    return genres.map((genre) => genre.name).join(', ');
   }
 }
 
@@ -379,8 +372,8 @@ class TvSeriesSeasonList extends StatelessWidget {
               child: Container(
                 width: 100,
                 decoration: BoxDecoration(
-                  color: Colors.grey[800],
                   borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[800],
                 ),
                 child: Column(
                   children: [

@@ -11,7 +11,6 @@ class WatchlistMoviesLoading extends WatchlistMoviesState {}
 
 class WatchlistMoviesHasData extends WatchlistMoviesState {
   final List<Movie> result;
-
   WatchlistMoviesHasData(this.result);
 
   @override
@@ -20,7 +19,6 @@ class WatchlistMoviesHasData extends WatchlistMoviesState {
 
 class WatchlistMoviesError extends WatchlistMoviesState {
   final String message;
-
   WatchlistMoviesError(this.message);
 
   @override

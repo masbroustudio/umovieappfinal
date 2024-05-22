@@ -23,16 +23,18 @@ class SearchMoviesPage extends StatelessWidget {
             children: [
               TextField(
                 onChanged: (query) {
-                  context
-                      .read<SearchMoviesBloc>()
-                      .add(SearchMoviesOnQueryChanged(query));
+                  context.read<SearchMoviesBloc>().add(
+                        SearchMoviesOnQueryChanged(query),
+                      );
                 },
                 decoration: const InputDecoration(
                   hintText: 'Search title',
                   contentPadding: EdgeInsets.all(14),
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(16),
+                    ),
                   ),
                 ),
                 textInputAction: TextInputAction.search,

@@ -21,8 +21,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<DetailMovieBloc>().add(FetchDetailMovie(widget.id));
-      context.read<DetailMovieBloc>().add(LoadWatchlistStatusMovie(widget.id));
+      context.read<DetailMovieBloc>().add(
+            FetchDetailMovie(widget.id),
+          );
+      context.read<DetailMovieBloc>().add(
+            LoadWatchlistStatusMovie(widget.id),
+          );
     });
   }
 
@@ -113,7 +117,9 @@ class DetailContent extends StatelessWidget {
               return Container(
                 decoration: const BoxDecoration(
                   color: kRichBlack,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   left: 16,
@@ -137,15 +143,15 @@ class DetailContent extends StatelessWidget {
                               key: const Key('watchlistButton'),
                               onPressed: () {
                                 if (!isAddedWatchlist) {
-                                  context
-                                      .read<DetailMovieBloc>()
-                                      .add(AddWatchlistMovie(movieDetail));
+                                  context.read<DetailMovieBloc>().add(
+                                        AddWatchlistMovie(movieDetail),
+                                      );
                                 } else {
-                                  context
-                                      .read<DetailMovieBloc>()
-                                      .add(RemoveFromWatchlistMovie(
-                                        movieDetail,
-                                      ));
+                                  context.read<DetailMovieBloc>().add(
+                                        RemoveFromWatchlistMovie(
+                                          movieDetail,
+                                        ),
+                                      );
                                 }
                               },
                               child: Row(
@@ -288,26 +294,13 @@ class DetailContent extends StatelessWidget {
   }
 
   String _showGenres(List<Genre> genres) {
-    String result = '';
-    for (var genre in genres) {
-      result += '${genre.name}, ';
-    }
-
-    if (result.isEmpty) {
-      return result;
-    }
-
-    return result.substring(0, result.length - 2);
+    return genres.fold(
+        '', (previousValue, genre) => '$previousValue${genre.name}, ');
   }
 
   String _showDuration(int runtime) {
     final int hours = runtime ~/ 60;
     final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
+    return hours > 0 ? '${hours}h ${minutes}m' : '${minutes}m';
   }
 }

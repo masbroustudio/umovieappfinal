@@ -36,7 +36,9 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
       await databaseHelper.insertWatchlistTvSeries(tvSeries);
       return 'Add to Tv Series Watchlist';
     } catch (e) {
-      throw DatabaseException(e.toString());
+      throw DatabaseException(
+        e.toString(),
+      );
     }
   }
 
@@ -46,7 +48,9 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
       await databaseHelper.removeWatchlistTvSeries(tvSeries);
       return 'Remove from Tv Series Watchlist';
     } catch (e) {
-      throw DatabaseException(e.toString());
+      throw DatabaseException(
+        e.toString(),
+      );
     }
   }
 }

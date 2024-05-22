@@ -16,6 +16,7 @@ class _WatchlistPageState extends State<WatchlistPage>
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(
       initialIndex: 0,
       length: _listTabs.length,

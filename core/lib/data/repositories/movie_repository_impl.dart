@@ -21,8 +21,13 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getNowPlaying() async {
     try {
       final result = await remoteDataSource.getNowPlaying();
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -43,8 +48,13 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getTopRated() async {
     try {
       final result = await remoteDataSource.getTopRated();
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -66,7 +76,11 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final result = await remoteDataSource.getPopular();
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -105,8 +119,13 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getRecommendation(int id) async {
     try {
       final result = await remoteDataSource.getRecommendation(id);
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(ServerFailure(''));
@@ -125,7 +144,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getWatchlist() async {
     final result = await localDataSource.getWatchlist();
     return Right(
-      result.map((data) => data.toEntity()).toList(),
+      result
+          .map(
+            (data) => data.toEntity(),
+          )
+          .toList(),
     );
   }
 
@@ -148,6 +171,7 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<bool> isAddedToWatchlist(int id) async {
     final result = await localDataSource.getWatchlistById(id);
+
     return result != null;
   }
 
@@ -170,7 +194,11 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final result = await remoteDataSource.search(query);
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(

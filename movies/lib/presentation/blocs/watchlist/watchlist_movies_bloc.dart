@@ -11,19 +11,29 @@ class WatchlistMoviesBloc
   final GetWatchlistMovies _getWatchlistMovies;
 
   WatchlistMoviesBloc(this._getWatchlistMovies)
-      : super(WatchlistMoviesEmpty()) {
+      : super(
+          WatchlistMoviesEmpty(),
+        ) {
     on<FetchWatchlistMovies>((event, emit) async {
-      emit(WatchlistMoviesLoading());
+      emit(
+        WatchlistMoviesLoading(),
+      );
 
       final result = await _getWatchlistMovies.execute();
 
       result.fold(
-        (failure) => emit(WatchlistMoviesError(failure.message)),
+        (failure) => emit(
+          WatchlistMoviesError(failure.message),
+        ),
         (data) {
           if (data.isEmpty) {
-            emit(WatchlistMoviesEmpty());
+            emit(
+              WatchlistMoviesEmpty(),
+            );
           } else {
-            emit(WatchlistMoviesHasData(data));
+            emit(
+              WatchlistMoviesHasData(data),
+            );
           }
         },
       );

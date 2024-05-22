@@ -133,7 +133,6 @@ class _MovieListPageState extends State<MovieListPage> {
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
-
   const MovieList(this.movies, {super.key});
 
   @override
@@ -156,7 +155,9 @@ class MovieList extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(16),
+                ),
                 child: CachedNetworkImage(
                   imageUrl: '$baseImageUrl${movie.posterPath}',
                   placeholder: (_, __) => const Center(

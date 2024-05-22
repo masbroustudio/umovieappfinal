@@ -16,19 +16,26 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
+
     Future.microtask(
-        () => context.read<WatchlistMoviesBloc>().add(FetchWatchlistMovies()));
+      () => context.read<WatchlistMoviesBloc>().add(
+            FetchWatchlistMovies(),
+          ),
+    );
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void didPopNext() {
-    context.read<WatchlistMoviesBloc>().add(FetchWatchlistMovies());
+    context.read<WatchlistMoviesBloc>().add(
+          FetchWatchlistMovies(),
+        );
   }
 
   @override

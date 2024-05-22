@@ -11,7 +11,6 @@ class NowPlayingMoviesLoading extends NowPlayingMoviesState {}
 
 class NowPlayingMoviesHasData extends NowPlayingMoviesState {
   final List<Movie> result;
-
   NowPlayingMoviesHasData(this.result);
 
   @override
@@ -20,7 +19,6 @@ class NowPlayingMoviesHasData extends NowPlayingMoviesState {
 
 class NowPlayingMoviesError extends NowPlayingMoviesState {
   final String message;
-
   NowPlayingMoviesError(this.message);
 
   @override

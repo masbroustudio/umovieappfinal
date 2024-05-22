@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTvSeries = <TvSeries>[];
-  const tQuery = 'Game of Thrones';
+  const tQuery = 'Greek';
 
   test('GET Search Tv Series from the repository', () async {
     when(

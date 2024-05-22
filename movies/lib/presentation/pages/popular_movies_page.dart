@@ -15,7 +15,10 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   void initState() {
     super.initState();
     Future.microtask(
-        () => context.read<PopularMoviesBloc>().add(FetchPopularMovies()));
+      () => context.read<PopularMoviesBloc>().add(
+            FetchPopularMovies(),
+          ),
+    );
   }
 
   @override

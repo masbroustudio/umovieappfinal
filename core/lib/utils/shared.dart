@@ -32,6 +32,7 @@ class Shared {
 
       rethrow;
     }
+
     HttpClient httpClient = HttpClient(context: context);
 
     httpClient.badCertificateCallback =

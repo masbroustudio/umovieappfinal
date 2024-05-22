@@ -154,7 +154,6 @@ class _TvSeriesListPageState extends State<TvSeriesListPage> {
 
 class TvSeriesList extends StatelessWidget {
   final List<TvSeries> tvSeries;
-
   const TvSeriesList(this.tvSeries, {super.key});
 
   @override

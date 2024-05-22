@@ -27,6 +27,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
@@ -41,7 +42,12 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 8,
+          right: 8,
+          bottom: 8,
+        ),
         child: BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
           builder: (_, state) {
             if (state is WatchlistTvSeriesLoading) {
@@ -66,7 +72,10 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.visibility_off, size: 32),
+                    Icon(
+                      Icons.visibility_off,
+                      size: 32,
+                    ),
                     SizedBox(height: 2),
                     Text('Empty Watchlist'),
                   ],

@@ -2,6 +2,7 @@ part of 'search_movies_bloc.dart';
 
 abstract class SearchMoviesEvent extends Equatable {
   const SearchMoviesEvent();
+
   // coverage:ignore-start
   @override
   List<Object?> get props => [];
@@ -10,8 +11,8 @@ abstract class SearchMoviesEvent extends Equatable {
 
 class SearchMoviesOnQueryChanged extends SearchMoviesEvent {
   final String query;
-
   const SearchMoviesOnQueryChanged(this.query);
+
   // coverage:ignore-start
   @override
   List<Object?> get props => [query];

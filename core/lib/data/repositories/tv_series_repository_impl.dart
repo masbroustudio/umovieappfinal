@@ -22,8 +22,13 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> getNowPlaying() async {
     try {
       final result = await remoteDataSource.getNowPlaying();
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -44,8 +49,13 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> getPopular() async {
     try {
       final result = await remoteDataSource.getPopular();
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -66,8 +76,13 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> getTopRated() async {
     try {
       final result = await remoteDataSource.getTopRated();
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(
@@ -135,6 +150,7 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   ) async {
     try {
       final result = await remoteDataSource.getSeasonDetail(id, seasonNumber);
+
       return Right(
         result.toEntity(),
       );
@@ -157,8 +173,13 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> getWatchlist() async {
     try {
       final result = await localDataSource.getWatchlist();
+
       return Right(
-        result.map((data) => data.toEntity()).toList(),
+        result
+            .map(
+              (data) => data.toEntity(),
+            )
+            .toList(),
       );
     } on DatabaseException catch (e) {
       return Left(
@@ -187,6 +208,7 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   @override
   Future<bool> isAddedToWatchlist(int id) async {
     final result = await localDataSource.getWatchlistById(id);
+
     return result != null;
   }
 
@@ -209,8 +231,13 @@ class TvSeriesRepositoryImpl extends TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> search(String query) async {
     try {
       final result = await remoteDataSource.search(query);
+
       return Right(
-        result.map((model) => model.toEntity()).toList(),
+        result
+            .map(
+              (model) => model.toEntity(),
+            )
+            .toList(),
       );
     } on ServerException {
       return const Left(

@@ -11,7 +11,6 @@ class PopularMoviesLoading extends PopularMoviesState {}
 
 class PopularMoviesHasData extends PopularMoviesState {
   final List<Movie> result;
-
   PopularMoviesHasData(this.result);
 
   @override
@@ -20,7 +19,6 @@ class PopularMoviesHasData extends PopularMoviesState {
 
 class PopularMoviesError extends PopularMoviesState {
   final String message;
-
   PopularMoviesError(this.message);
 
   @override

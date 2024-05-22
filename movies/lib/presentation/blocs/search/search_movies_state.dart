@@ -15,7 +15,6 @@ class SearchMoviesLoading extends SearchMoviesState {}
 
 class SearchMoviesError extends SearchMoviesState {
   final String message;
-
   const SearchMoviesError(this.message);
 
   @override
@@ -24,7 +23,6 @@ class SearchMoviesError extends SearchMoviesState {
 
 class SearchMoviesHasData extends SearchMoviesState {
   final List<Movie> result;
-
   const SearchMoviesHasData(this.result);
 
   @override

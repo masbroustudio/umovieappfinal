@@ -9,19 +9,30 @@ part 'popular_movies_state.dart';
 class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   final GetPopularMovies _getPopularMovies;
 
-  PopularMoviesBloc(this._getPopularMovies) : super(PopularMoviesEmpty()) {
+  PopularMoviesBloc(this._getPopularMovies)
+      : super(
+          PopularMoviesEmpty(),
+        ) {
     on<FetchPopularMovies>((event, emit) async {
-      emit(PopularMoviesLoading());
+      emit(
+        PopularMoviesLoading(),
+      );
 
       final result = await _getPopularMovies.execute();
 
       result.fold(
-        (failure) => emit(PopularMoviesError(failure.message)),
+        (failure) => emit(
+          PopularMoviesError(failure.message),
+        ),
         (data) {
           if (data.isEmpty) {
-            emit(PopularMoviesEmpty());
+            emit(
+              PopularMoviesEmpty(),
+            );
           } else {
-            emit(PopularMoviesHasData(data));
+            emit(
+              PopularMoviesHasData(data),
+            );
           }
         },
       );
