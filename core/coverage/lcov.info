@@ -647,7 +647,7 @@ DA:32,2
 LF:10
 LH:10
 end_of_record
-SF:lib\domain\entities\tv_series.dart
+SF:lib\domain\entities\tvseries.dart
 DA:4,5
 DA:20,5
 DA:50,3
@@ -668,7 +668,7 @@ DA:64,3
 LF:17
 LH:17
 end_of_record
-SF:lib\domain\entities\tv_series_detail.dart
+SF:lib\domain\entities\tvseries_detail.dart
 DA:6,5
 DA:42,2
 DA:43,2
@@ -963,7 +963,7 @@ DA:213,3
 LF:86
 LH:85
 end_of_record
-SF:lib\data\repositories\tv_series_repository_impl.dart
+SF:lib\data\repositories\tvseries_repository_impl.dart
 DA:16,1
 DA:21,1
 DA:24,2

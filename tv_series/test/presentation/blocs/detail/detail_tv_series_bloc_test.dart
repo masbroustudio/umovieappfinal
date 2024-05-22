@@ -70,4 +70,31 @@ void main() {
       mockGetDetailTvSeries.execute(tId),
     ),
   );
+
+  group('DetailTvSeriesEvent', () {
+    test('supports value comparisons', () {
+      expect(
+        const FetchDetailTvSeries(1),
+        const FetchDetailTvSeries(1),
+      );
+      expect(
+        const FetchDetailTvSeries(1),
+        isNot(const FetchDetailTvSeries(2)),
+      );
+    });
+
+    test('props are correct for FetchDetailTvSeries', () {
+      expect(
+        const FetchDetailTvSeries(1).props,
+        [1],
+      );
+    });
+
+    test('toString is correct for FetchDetailTvSeries', () {
+      expect(
+        const FetchDetailTvSeries(1).toString(),
+        'FetchDetailTvSeries(1)',
+      );
+    });
+  });
 }
