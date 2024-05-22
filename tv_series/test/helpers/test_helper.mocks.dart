@@ -14,9 +14,9 @@ import 'package:core/data/models/tv_series_detail_model.dart' as _i3;
 import 'package:core/data/models/tv_series_model.dart' as _i12;
 import 'package:core/data/models/tv_series_table.dart' as _i14;
 import 'package:core/domain/entities/season_detail.dart' as _i10;
-import 'package:core/domain/entities/tv_series.dart' as _i8;
-import 'package:core/domain/entities/tv_series_detail.dart' as _i9;
-import 'package:core/domain/repositories/tv_series_repository.dart' as _i5;
+import 'package:core/domain/entities/tvseries.dart' as _i8;
+import 'package:core/domain/entities/tvseries_detail.dart' as _i9;
+import 'package:core/domain/repositories/tvseries_repository.dart' as _i5;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:core/core.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -10,23 +9,25 @@ class AboutPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: kPrussianBlue,
-              child: Center(
-                child: Image.asset(
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(120),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                foregroundImage: Image.asset(
                   'assets/yudhae.png',
-                  width: 128,
-                ),
+                ).image,
               ),
             ),
           ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(32.0),
-              color: kMikadoYellow,
               child: const Text(
                 'uMovie merupakan sebuah aplikasi katalog film yang dikembangkan oleh Yudha Elfransyah sebagai contoh proyek aplikasi untuk kelas Menjadi Flutter Developer Expert.',
-                style: TextStyle(color: Colors.black87, fontSize: 16),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
                 textAlign: TextAlign.justify,
               ),
             ),

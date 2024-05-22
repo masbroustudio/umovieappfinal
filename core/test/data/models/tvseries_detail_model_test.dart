@@ -3,7 +3,7 @@ import 'package:core/data/models/season_model.dart';
 import 'package:core/data/models/tv_series_detail_model.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/season.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:core/domain/entities/tvseries_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

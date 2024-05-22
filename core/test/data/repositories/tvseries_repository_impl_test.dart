@@ -4,8 +4,8 @@ import 'package:mockito/mockito.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:core/data/models/tv_series_model.dart';
-import 'package:core/data/repositories/tv_series_repository_impl.dart';
-import 'package:core/domain/entities/tv_series.dart';
+import 'package:core/data/repositories/tvseries_repository_impl.dart';
+import 'package:core/domain/entities/tvseries.dart';
 
 import '../../dummy_data/tv_series/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';

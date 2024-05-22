@@ -1,7 +1,6 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/home_page.dart';
-import 'package:umovieapp/injection.dart' as di;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +31,7 @@ import 'package:tv_series/presentation/pages/season_detail_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:tv_series/presentation/pages/tv_series_detail_page.dart';
 import 'package:umovieapp/firebase_options.dart';
+import 'package:umovieapp/injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,10 +56,10 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<NowPlayingMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<PopularMoviesBloc>(),
+          create: (_) => di.locator<TopRatedMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TopRatedMoviesBloc>(),
+          create: (_) => di.locator<PopularMoviesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<DetailMovieBloc>(),
@@ -74,16 +74,19 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<NowPlayingTvSeriesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<PopularTvSeriesBloc>(),
+          create: (_) => di.locator<TopRatedTvSeriesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<TopRatedTvSeriesBloc>(),
+          create: (_) => di.locator<PopularTvSeriesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<DetailTvSeriesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<RecommendationTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeasonDetailBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistStatusTvSeriesBloc>(),
@@ -93,9 +96,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<SearchTvSeriesBloc>(),
-        ),
-        BlocProvider(
-          create: (_) => di.locator<SeasonDetailBloc>(),
         ),
       ],
       child: MaterialApp(
@@ -111,9 +111,13 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case popularMoviesRoute:
-              return MaterialPageRoute(builder: (_) => PopularMoviesPage());
+              return MaterialPageRoute(
+                builder: (_) => PopularMoviesPage(),
+              );
             case topRatedMoviesRoute:
-              return MaterialPageRoute(builder: (_) => TopRatedMoviesPage());
+              return MaterialPageRoute(
+                builder: (_) => TopRatedMoviesPage(),
+              );
             case movieDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -121,17 +125,25 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case searchMoviesRoute:
-              return MaterialPageRoute(builder: (_) => SearchMoviesPage());
+              return MaterialPageRoute(
+                builder: (_) => SearchMoviesPage(),
+              );
             case nowPlayingTvSeriesRoute:
               return MaterialPageRoute(
                 builder: (_) => NowPlayingTvSeriesPage(),
               );
             case popularTvSeriesRoute:
-              return MaterialPageRoute(builder: (_) => PopularTvSeriesPage());
+              return MaterialPageRoute(
+                builder: (_) => PopularTvSeriesPage(),
+              );
             case topRatedTvSeriesRoute:
-              return MaterialPageRoute(builder: (_) => TopRatedTvSeriesPage());
+              return MaterialPageRoute(
+                builder: (_) => TopRatedTvSeriesPage(),
+              );
             case searchTvSeriesRoute:
-              return MaterialPageRoute(builder: (_) => SearchTvSeriesPage());
+              return MaterialPageRoute(
+                builder: (_) => SearchTvSeriesPage(),
+              );
             case tvSeriesDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -148,7 +160,9 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case aboutRoute:
-              return MaterialPageRoute(builder: (_) => AboutPage());
+              return MaterialPageRoute(
+                builder: (_) => AboutPage(),
+              );
             default:
               return MaterialPageRoute(
                 builder: (_) {

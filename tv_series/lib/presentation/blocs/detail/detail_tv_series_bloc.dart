@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:core/domain/entities/tvseries_detail.dart';
 import 'package:tv_series/domain/usecases/get_detail_tv_series.dart';
 
 part 'detail_tv_series_event.dart';

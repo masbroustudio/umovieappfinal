@@ -143,6 +143,11 @@ class DetailContent extends StatelessWidget {
                               key: const Key('watchlistButton'),
                               onPressed: () {
                                 if (!isAddedWatchlist) {
+                                  // TODO : FirebaseCrashlytics
+                                  // FirebaseCrashlytics.instance.crash();
+                                  // Navigator.pushNamed(
+                                  //     context, searchMoviesRoute);
+
                                   context.read<DetailMovieBloc>().add(
                                         AddWatchlistMovie(movieDetail),
                                       );

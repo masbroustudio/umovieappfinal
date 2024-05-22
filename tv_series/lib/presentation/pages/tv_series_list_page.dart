@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core/domain/entities/tv_series.dart';
+import 'package:core/domain/entities/tvseries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';

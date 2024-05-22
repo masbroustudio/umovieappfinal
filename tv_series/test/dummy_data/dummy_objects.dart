@@ -9,8 +9,8 @@ import 'package:core/domain/entities/episode.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/season.dart';
 import 'package:core/domain/entities/season_detail.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:core/domain/entities/tvseries.dart';
+import 'package:core/domain/entities/tvseries_detail.dart';
 
 const tTvSeriesModel = TvSeriesModel(
   posterPath: '/xiECPWEyydPiB7XJtciAiS2spKN.jpg',

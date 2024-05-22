@@ -1,6 +1,6 @@
 import 'package:core/data/models/genre_model.dart';
 import 'package:core/data/models/season_model.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:core/domain/entities/tvseries_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesDetailResponse extends Equatable {

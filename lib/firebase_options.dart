@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'umovie01-954ba.appspot.com',
     iosBundleId: 'com.masbrou.umovieapp',
   );
+
 }

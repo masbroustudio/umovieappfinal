@@ -5,9 +5,9 @@ import 'package:core/data/datasources/movie_remote_data_source.dart';
 import 'package:core/data/datasources/tv_series_local_data_source.dart';
 import 'package:core/data/datasources/tv_series_remote_data_source.dart';
 import 'package:core/data/repositories/movie_repository_impl.dart';
-import 'package:core/data/repositories/tv_series_repository_impl.dart';
+import 'package:core/data/repositories/tvseries_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
-import 'package:core/domain/repositories/tv_series_repository.dart';
+import 'package:core/domain/repositories/tvseries_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movies/domain/usecases/get_detail_movie.dart';
 import 'package:movies/domain/usecases/get_now_playing_movies.dart';
@@ -49,7 +49,7 @@ import 'package:tv_series/presentation/blocs/watchlist_status/watchlist_status_t
 final locator = GetIt.instance;
 
 void init() {
-  // bloc
+  // bloc movies tv series
   locator.registerFactory(() => NowPlayingMoviesBloc(locator()));
   locator.registerFactory(() => PopularMoviesBloc(locator()));
   locator.registerFactory(() => TopRatedMoviesBloc(locator()));
@@ -65,7 +65,6 @@ void init() {
   locator.registerFactory(() => WatchlistMoviesBloc(locator()));
   locator.registerFactory(() => SearchMoviesBloc(locator()));
 
-  // bloc tv series
   locator.registerFactory(() => NowPlayingTvSeriesBloc(locator()));
   locator.registerFactory(() => PopularTvSeriesBloc(locator()));
   locator.registerFactory(() => TopRatedTvSeriesBloc(locator()));
@@ -82,7 +81,7 @@ void init() {
   locator.registerFactory(() => WatchlistTvSeriesBloc(locator()));
   locator.registerFactory(() => SearchTvSeriesBloc(locator()));
 
-  // use case movies
+  // usecases
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
@@ -94,7 +93,6 @@ void init() {
   locator.registerLazySingleton(() => RemoveWatchlistMovie(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
-  // use case tv series
   locator.registerLazySingleton(() => GetNowPlayingTvSeries(locator()));
   locator.registerLazySingleton(() => GetPopularTvSeries(locator()));
   locator.registerLazySingleton(() => GetTopRatedTvSeries(locator()));
@@ -121,19 +119,31 @@ void init() {
     ),
   );
 
-  // data sources
+  // data
   locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl(client: locator()));
+    () => MovieRemoteDataSourceImpl(
+      client: locator(),
+    ),
+  );
   locator.registerLazySingleton<MovieLocalDataSource>(
-      () => MovieLocalDataSourceImpl(databaseHelper: locator()));
+    () => MovieLocalDataSourceImpl(
+      databaseHelper: locator(),
+    ),
+  );
   locator.registerLazySingleton<TvSeriesRemoteDataSource>(
-      () => TvSeriesRemoteDataSourceImpl(client: locator()));
+    () => TvSeriesRemoteDataSourceImpl(
+      client: locator(),
+    ),
+  );
   locator.registerLazySingleton<TvSeriesLocalDataSource>(
-      () => TvSeriesLocalDataSourceImpl(databaseHelper: locator()));
+    () => TvSeriesLocalDataSourceImpl(
+      databaseHelper: locator(),
+    ),
+  );
 
   // helper
-  locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
-
-  // external
+  locator.registerLazySingleton<DatabaseHelper>(
+    () => DatabaseHelper(),
+  );
   locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

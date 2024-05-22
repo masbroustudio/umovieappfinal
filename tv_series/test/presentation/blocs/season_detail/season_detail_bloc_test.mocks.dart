@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 
 import 'package:core/core.dart' as _i6;
 import 'package:core/domain/entities/season_detail.dart' as _i7;
-import 'package:core/domain/repositories/tv_series_repository.dart' as _i2;
+import 'package:core/domain/repositories/tvseries_repository.dart' as _i2;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:tv_series/domain/usecases/get_season_detail.dart' as _i4;

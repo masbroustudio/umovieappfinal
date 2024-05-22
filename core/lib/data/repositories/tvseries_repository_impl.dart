@@ -5,9 +5,9 @@ import 'package:core/data/datasources/tv_series_local_data_source.dart';
 import 'package:core/data/datasources/tv_series_remote_data_source.dart';
 import 'package:core/data/models/tv_series_table.dart';
 import 'package:core/domain/entities/season_detail.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
-import 'package:core/domain/repositories/tv_series_repository.dart';
+import 'package:core/domain/entities/tvseries.dart';
+import 'package:core/domain/entities/tvseries_detail.dart';
+import 'package:core/domain/repositories/tvseries_repository.dart';
 
 class TvSeriesRepositoryImpl extends TvSeriesRepository {
   final TvSeriesRemoteDataSource remoteDataSource;

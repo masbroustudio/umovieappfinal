@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
-class Shared {
+class SslpinHelper {
   static Future<HttpClient> customHttpClient() async {
     SecurityContext context = SecurityContext(withTrustedRoots: false);
     try {
@@ -42,7 +42,7 @@ class Shared {
   }
 
   static Future<http.Client> createLEClient() async {
-    IOClient client = IOClient(await Shared.customHttpClient());
+    IOClient client = IOClient(await SslpinHelper.customHttpClient());
 
     return client;
   }
