@@ -154,7 +154,6 @@ void main() {
       // act
       final result = await repository.getPopular();
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tMovieList);
     });
@@ -228,7 +227,6 @@ void main() {
       // act
       final result = await repository.getTopRated();
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tMovieList);
     });
@@ -380,12 +378,15 @@ void main() {
       // arrange
       when(mockRemoteDataSource.getRecommendation(tId))
           .thenAnswer((_) async => tMovieList);
+
       // act
       final result = await repository.getRecommendation(tId);
+
       // assert
       verify(mockRemoteDataSource.getRecommendation(tId));
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+
       final resultList = result.getOrElse(() => []);
+
       expect(resultList, equals(tMovieList));
     });
 
@@ -537,11 +538,13 @@ void main() {
       when(
         mockRemoteDataSource.search(tQuery),
       ).thenAnswer((_) async => tMovieModelList);
+
       // act
       final result = await repository.search(tQuery);
+
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
+
       expect(resultList, tMovieList);
     });
 

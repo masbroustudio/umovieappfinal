@@ -317,7 +317,7 @@ void main() {
       readJson('dummy_data/tv_series/search_example_tv_series.json'),
     )).tvSeriesList;
 
-    const tQuery = 'Game of Thrones';
+    const tQuery = 'Greek';
 
     test('Return list of tv series when response code 200', () async {
       // arrange

@@ -400,14 +400,16 @@ void main() {
       when(
         mockRemoteDataSource.getRecommendation(tId),
       ).thenAnswer((_) async => tTvSeriesList);
+
       // act
       final result = await repository.getRecommendation(tId);
+
       // assert
       verify(
         mockRemoteDataSource.getRecommendation(tId),
       );
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
+
       expect(
         resultList,
         equals(tTvSeriesList),
@@ -703,18 +705,20 @@ void main() {
   });
 
   group('Search TV Series', () {
-    const tQuery = 'game of thrones';
+    const tQuery = 'Greek';
 
     test('Return tv series list when call to data source is success', () async {
       // arrange
       when(
         mockRemoteDataSource.search(tQuery),
       ).thenAnswer((_) async => tTvSeriesModelList);
+
       // act
       final result = await repository.search(tQuery);
+
       // assert
-      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
+
       expect(resultList, tTvSeriesList);
     });
 
