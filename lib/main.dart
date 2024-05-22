@@ -36,9 +36,9 @@ import 'package:umovieapp/injection.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await HttpSSLPinning.init();
-
   di.init();
+
+  await HttpSSLPinning.init();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

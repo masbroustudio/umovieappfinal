@@ -6,7 +6,7 @@ import 'package:movies/presentation/pages/movie_list_page.dart';
 import 'package:tv_series/presentation/pages/tv_series_list_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
